@@ -12,7 +12,5 @@ int main() {
     const double Lz = 20.0;  // z dimension of box
 
     Particle p(10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
-    cout << p.x;
-
-    return -1;
+    cout << p.x << endl<< p.y << endl << p.z << endl;
 }
