@@ -11,5 +11,8 @@ int main() {
     const double Ly = 20.0;  // y dimension of box
     const double Lz = 20.0;  // z dimension of box
 
+    Particle p(10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
+    cout << p.x;
+
     return -1;
 }
