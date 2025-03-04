@@ -38,7 +38,8 @@ class Box {
         void printParticles() {
             for (int i = 0; i < particles.size(); i++) {
                 cout << "Particle " << i + 1 << " Position: ("
-                << particles[i].x << ", " << particles[i].y << ", " << particles[i].z << ")" << endl;
+                << particles[i].x << ", " << particles[i].y << ", " << particles[i].z << ")" 
+                " Type:" << particles[i].type << endl;
             }
         }
 };
