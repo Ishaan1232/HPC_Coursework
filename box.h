@@ -35,9 +35,9 @@ class Box {
         }
 
         // Function to print all particles in the box
-        double printParticles() {
+        void printParticles() {
             for (int i = 0; i < particles.size(); i++) {
-                std::cout << "Particle " << i + 1 << " Position: ("
+                cout << "Particle " << i + 1 << " Position: ("
                 << particles[i].x << ", " << particles[i].y << ", " << particles[i].z << ")" << endl;
             }
         }

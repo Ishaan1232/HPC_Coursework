@@ -1,24 +1,50 @@
 #include <iostream>
 #include <cmath>
+#include <fstream>
+#include <string>
 using namespace std;
 
 #include "box.h"
 #include "particle.h"
 
-int main() {
-    const double T = 1.0;  // Simulation time
-    const double dt = 0.001;  // time step
-    const double Lx = 20.0;  // x dimension of box
-    const double Ly = 20.0;  // y dimension of box
-    const double Lz = 20.0;  // z dimension of box
+void Help() {
+    ifstream file("help.txt");  // Open the fileS
 
-    Box fixedBox(Lx, Ly, Lz);
+    string line;
+    while (getline(file, line)) {  // Read line by line
+        cout << line << endl;  // Print each line to terminal
+    }
 
-    Particle p1(8.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
-    Particle p2(11.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
-    
-    fixedBox.addParticle(p1);
-    fixedBox.addParticle(p2);
-
-    fixedBox.printParticles();
+    file.close();  // Close file after reading
 }
+
+int main(int argc, char* argv[]) {
+
+    double dt = 0.001;  // default time step
+    double Lx = 20.0, Ly = 20.0, Lz = 20.0;  // default dimensions of box
+    double percent_type1 = 10.0;  // default percentage of type 1
+    double T;    // Final time
+    double temp = -1.0; // if temp = -1, the temperature is not fixed
+    int N;  // Number of particles
+
+    for (int i = 1; i < argc; i++) {
+        
+        if (string(argv[i]) == "--help") {
+            Help();
+            return 0;
+        }
+    }
+
+    Box box(Lx, Ly, Lz);
+
+    Particle p(10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
+    box.addParticle(p);
+
+}
+
+// Initial Condition 3
+// Particle p1(8.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
+// Particle p2(11.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
+    
+// box.addParticle(p1);
+// box.addParticle(p2);

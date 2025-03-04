@@ -1,0 +1,17 @@
+Allowed options:
+--help                    Print available options;
+--Lx arg (=20)            x length (Angstroms)
+--Ly arg (=20)            y length (Angstroms)
+--Lz arg (=20)            z length (Angstroms)
+--dt arg (=0.001)         Time-step
+--T arg                   Final time
+--ic-one                  Initial Condition: one stationary particles
+--ic-one-vel              Initial Condition: one moving particle
+--ic-two                  Initial Condition: two bouncing particles
+--ic-two-pass1            Initial Condition: two passing particles
+--ic-two-pass2            Initial Condition: two passing particles close
+--ic-two-pass3            Initial Condition: two passing particles close, heavy
+--ic-random               Initial Condition: N random particles
+--percent-type1 arg (=10) Percentage of type 1 particles with random IC
+--N arg                   Number of particles to spawn with random IC
+--temp arg                Temperature (degrees Kelvin)
