@@ -1,10 +1,13 @@
+#ifndef PARTICLE_H
+#define PARTICLE_H// header guard to prevent being included in multiple files
+
 #include <iostream>
 #include <cmath> 
 using namespace std;
 
 class Particle {
     public:
-
+    
         double x, y, z;      // Position
         double vx, vy, vz;   // Velocity
         int type;            // Particle type = 0 or 1
@@ -51,3 +54,5 @@ class Particle {
             return 0.5 * mass * (vx*vx + vy*vy + vz*vz);
         }
 };
+
+#endif // particle.h
