@@ -25,14 +25,14 @@ class Particle {
         
         // Destructor
         ~Particle() {
-
+            // nothing to do
         }
-        
+
         // Updates the particles position and velocity:
         // r(i+1) = r(i) + dt * v(i)
         // v(i+1) = v(i) = dt * F(i)/mass
         // check boundary conditions after
-        void updateParticle(double dt, double Lx, double Ly, double Lz, double Fx, double Fy, double Fz) {
+        void updatePosition(double dt, double Lx, double Ly, double Lz, double Fx, double Fy, double Fz) {
             x += dt * vx;    // update x
             y += dt * vy;    // update y
             z += dt * vz;    // update z
@@ -53,6 +53,9 @@ class Particle {
             if (z < 0) {z = -z; vz = abs(vz);} 
             if (z > Lz) {z = 2*Lz - z; vz = -abs(vz);}
         }
+
+        // Function to calcaulte the force exerted on particle i by particle j
+
         
         // calcaultes kinetic energy of particle
         double particleKE() {

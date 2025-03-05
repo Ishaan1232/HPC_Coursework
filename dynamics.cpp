@@ -175,9 +175,25 @@ int main(int argc, char* argv[]) {
                 if ((i+1.0)/N > percent_type1/100) {
                     type = 0;
                 }
+
+                bool remove = false;
                 Particle p(rand_val(0, Lx), rand_val(0, Ly), rand_val(0, Lz), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), type);
-                int n = 
                 box.addParticle(p);
+
+                for (int j = 0; j < i; j++) {
+                    if (box.findR(i, j) < 0.5) {
+                        remove = true;
+                        break;
+                    }
+                }
+
+                if (remove) {
+                    box.removeLastParticle();
+                    i--;
+                    // cout << "Particle removed" << endl;
+                } else {
+                    // cout << "Particle added successfully" << endl;
+                }
             }
         }
 
@@ -185,6 +201,10 @@ int main(int argc, char* argv[]) {
         cerr << "Error: " << e.what() << endl;
         return 1;
     }
+
+    box.printParticles();
+
+    box.runSimulation(T, dt, Lx, Ly, Lz);
 
     box.printParticles();
 }
