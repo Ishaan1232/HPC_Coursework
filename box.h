@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "particle.h"
+#include <cblas.h>
 
 class Box {
     public:
@@ -35,19 +36,18 @@ class Box {
         }
 
         // Function to find the disatnce between two particles i and j
-        double findR(int i, int j) {
-            double dx = particles[i].x - particles[j].x;  // x separation
-            double dy = particles[i].y - particles[j].y;  // y separation
-            double dz = particles[i].z - particles[j].z;  // z separation
-
-            return sqrt(dx*dx + dy*dy + dz*dz);
+        double findR(int i, int j, double diff[3]) {
+            cblas_dcopy(3, particles[i].r, 1, diff, 1);
+            cblas_daxpy(3, -1.0, particles[j].r, 1, diff, 1);
+            return cblas_dnrm2(3, diff, 1);
         }
 
         // Function to calculate F_i
 
-        tuple<double, double, double> calculateF_i(int i, int N) {
-            double Fx_i = 0.0, Fy_i = 0.0, Fz_i = 0.0;
+        void calculateF_i(int i, int N) {
             double eps, sig, r_ij, dphi_dx;
+            double diff[3];
+            cblas_dscal(3, 0.0, particles[i].F, 1);
             for (int j = 0; j < N; j++) {
                 if (i != j) {
                     if (particles[i].type == particles[j].type) {
@@ -63,15 +63,12 @@ class Box {
                         sig = 2.0;
                     }
 
-                    r_ij = findR(i, j);
+                    r_ij = findR(i, j, diff);
                     dphi_dx = -24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
 
-                    Fx_i += dphi_dx * (particles[j].x - particles[i].x);
-                    Fy_i += dphi_dx * (particles[j].y - particles[i].y);
-                    Fz_i += dphi_dx * (particles[j].z - particles[i].z);
+                    cblas_daxpy(3, dphi_dx, diff, 1, particles[i].F, 1);
                 }
             }
-            return {Fx_i, Fy_i, Fz_i};
         }
 
         // Function to find the system's temperature
@@ -83,7 +80,7 @@ class Box {
         void printParticles() {
             for (size_t i = 0; i < particles.size(); i++) {  // use size_t so i is unsigned like size()
                 cout << "Particle " << i + 1 << " Position: ("
-                << particles[i].x << ", " << particles[i].y << ", " << particles[i].z << ")" 
+                << particles[i].r[0] << ", " << particles[i].r[1] << ", " << particles[i].r[2] << ")" 
                 " Type:" << particles[i].type << endl;
             }
         }
@@ -91,9 +88,10 @@ class Box {
         void runSimulation(double Lx, double Ly, double Lz, double dt, double T, int N) {
             for (double t = 0.0; t <= T; t += dt) {
                 for (size_t i = 0; i < particles.size(); i++) {
-                    double Fx_i, Fy_i, Fz_i;
-                    tie(Fx_i, Fy_i, Fz_i) = calculateF_i(i, N);
-                    particles[i].updatePosition(dt, Lx, Ly, Lz, Fx_i, Fy_i, Fz_i);
+                    calculateF_i(i, N);
+                }
+                for (size_t i = 0; i < particles.size(); i++) {
+                    particles[i].updatePosition(dt, Lx, Ly, Lz);
                 }
             }
         }

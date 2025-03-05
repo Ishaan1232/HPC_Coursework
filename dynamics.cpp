@@ -180,8 +180,9 @@ int main(int argc, char* argv[]) {
                 Particle p(rand_val(0, Lx), rand_val(0, Ly), rand_val(0, Lz), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), type);
                 box.addParticle(p);
 
+                double diff[3];
                 for (int j = 0; j < i; j++) {
-                    if (box.findR(i, j) < 0.5) {
+                    if (box.findR(i, j, diff) < 0.5) {
                         remove = true;
                         break;
                     }
@@ -190,10 +191,7 @@ int main(int argc, char* argv[]) {
                 if (remove) {
                     box.removeLastParticle();
                     i--;
-                    // cout << "Particle removed" << endl;
-                } else {
-                    // cout << "Particle added successfully" << endl;
-                }
+                } 
             }
         }
 

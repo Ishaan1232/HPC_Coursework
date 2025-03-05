@@ -48,7 +48,7 @@ class Particle {
         }
 
         // Updates the particles position and velocity:
-        void updatePosition(double dt, double Lx, double Ly, double Lz, double Fx, double Fy, double Fz) {
+        void updatePosition(double dt, double Lx, double Ly, double Lz) {
             cblas_daxpy(3, dt, v, 1, r, 1);    // update position r = r + dt*v
             cblas_daxpy(3, dt/mass, F, 1, v, 1);  // update velocity v = v + dt/mass * F
             
@@ -60,7 +60,7 @@ class Particle {
         
         // calcaultes kinetic energy of particle
         double particleKE() {
-            return 0.5 * mass * cblas_dnrm2(3, v, 1);
+            return 0.5 * mass * pow(cblas_dnrm2(3, v, 1), 2);
         }
 };
 
