@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
             box.addParticle(p);
             N = 1;
         } else if (ic == "ic-one-vel") {
-            Particle p(10.0, 10.0, 10.0, 0.5, 2.0, 1.0, 0);
+            Particle p(10.0, 10.0, 10.0, 5.0, 2.0, 1.0, 0);
             box.addParticle(p);
             N = 1;
         } else if (ic == "ic-two") {
@@ -204,7 +204,7 @@ int main(int argc, char* argv[]) {
 
     box.printParticles();
 
-    box.runSimulation(Lx, Ly, Lz, dt, T);
+    box.runSimulation(Lx, Ly, Lz, dt, T, N);
 
     box.printParticles();
 }

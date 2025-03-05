@@ -54,31 +54,6 @@ class Particle {
             if (z < 0) {z = -z; vz = abs(vz);} 
             if (z > Lz) {z = 2*Lz - z; vz = -abs(vz);}
         }
-
-        // Function to calcaulte the force exerted on particle i by particle j
-        tuple<double, double, double> F_ij(Particle p_j) {
-            double eps, sig, x_ij, y_ij, z_ij, r_ij;
-            if (type == p_j.type) {
-                if (type == 0) {
-                    eps = 3.0; 
-                    sig = 1.0;
-                } else {
-                    eps = 60.0;
-                    sig = 3.0;
-                }
-            } else {
-                eps = 15.0;
-                sig = 2.0;
-            }
-
-            x_ij = p_j.x - x;
-            y_ij = p_j.y - y;
-            z_ij = p_j.z - z;
-            r_ij = sqrt(x_ij * x_ij + y_ij*y_ij + z_ij*z_ij);
-            double dphi_dx_const = 24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
-
-            return {dphi_dx_const * x_ij, dphi_dx_const * y_ij, dphi_dx_const * z_ij};
-        }
         
         // calcaultes kinetic energy of particle
         double particleKE() {
