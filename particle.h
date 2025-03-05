@@ -11,29 +11,40 @@ using namespace std;
 class Particle {
     public:
 
-        double* r = new double[3];      // Position
-        double* v = new double[3];      // Velocity
-        double* F = new double[3];      // Force at time t
+        double* r;      // Position
+        double* v;      // Velocity
+        double* F;      // Force at time t
         int type;            // Particle type = 0 or 1
         double mass;         // Mass (1 for type = 0, 10 for type = 1)
         
         // Constructor: create particles with its position, velocity and type(mass)
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i) 
         : type(type_i) {  
-            r[0] = x_i; r[1] = y_i; r[2] = z_i;
-            v[0] = vx_i; v[1] = vy_i; v[2] = vz_i;
+            r = new double[3]{x_i, y_i, z_i};
+            v = new double[3]{vx_i, vy_i, vz_i};
+            F = new double[3]{0.0, 0.0, 0.0};  // Initialize force
             if (type == 0) {
                 mass = 1.0;
             } else {
                 mass = 10.0;
             }
         }   
+
+        // Copy Constructor
+        Particle(const Particle& p) {
+            type = p.type;
+            mass = p.mass;
+            r = new double[3]{p.r[0], p.r[1], p.r[2]};
+            v = new double[3]{p.v[0], p.v[1], p.v[2]};
+            F = new double[3]{p.F[0], p.F[1], p.F[2]};
+        }        
         
         // Destructor
         ~Particle() {
             delete[] r;
             delete[] v;
             delete[] F;
+            r = v = F = nullptr;
         }
 
         void applyBC(double* pos, double* vel, double L) {
@@ -54,8 +65,8 @@ class Particle {
             
             // Apply the boundary conditions
             applyBC(&r[0], &v[0], Lx);
-            applyBC(&r[1], &v[1], Lx);
-            applyBC(&r[2], &v[2], Lx);
+            applyBC(&r[1], &v[1], Ly);
+            applyBC(&r[2], &v[2], Lz);
         }
         
         // calcaultes kinetic energy of particle

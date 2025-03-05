@@ -66,7 +66,7 @@ class Box {
                     r_ij = findR(i, j, diff);
                     dphi_dx = -24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
 
-                    cblas_daxpy(3, dphi_dx, diff, 1, particles[i].F, 1);
+                    cblas_daxpy(3, -dphi_dx, diff, 1, particles[i].F, 1);
                 }
             }
         }
@@ -80,8 +80,7 @@ class Box {
         void printParticles() {
             for (size_t i = 0; i < particles.size(); i++) {  // use size_t so i is unsigned like size()
                 cout << "Particle " << i + 1 << " Position: ("
-                << particles[i].r[0] << ", " << particles[i].r[1] << ", " << particles[i].r[2] << ")" 
-                " Type:" << particles[i].type << endl;
+                << particles[i].r[0] << ", " << particles[i].r[1] << ", " << particles[i].r[2] << ") Type:" << particles[i].type << endl;
             }
         }
 
