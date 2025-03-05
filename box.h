@@ -57,7 +57,7 @@ class Box {
             }
         }
 
-        void runSimulation(double T, double dt, double Lx, double Ly, double Lz) {
+        void runSimulation(double Lx, double Ly, double Lz, double dt, double T) {
             for (double t = 0.0; t <= T; t += dt) {
                 for (size_t i = 0; i < particles.size(); i++) {
                     

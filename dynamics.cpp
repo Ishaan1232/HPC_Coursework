@@ -204,7 +204,7 @@ int main(int argc, char* argv[]) {
 
     box.printParticles();
 
-    box.runSimulation(T, dt, Lx, Ly, Lz);
+    box.runSimulation(Lx, Ly, Lz, dt, T);
 
     box.printParticles();
 }
