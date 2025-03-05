@@ -9,7 +9,7 @@ using namespace std;
 class Particle {
     public:
 
-        double x, y, z;      // Position
+        double* position = new double[3];      // Position
         double vx, vy, vz;   // Velocity
         int type;            // Particle type = 0 or 1
         double mass;         // Mass (1 for type = 0, 10 for type = 1)
