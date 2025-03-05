@@ -71,11 +71,6 @@ class Box {
             }
         }
 
-        // Function to find the system's temperature
-        double systemTemp(double E) {
-            return 2/(3 * 0.8314459920816467) * E;
-        }
-
         // Function to print all particles in the box
         void printParticles() {
             for (size_t i = 0; i < particles.size(); i++) {  // use size_t so i is unsigned like size()
@@ -84,13 +79,13 @@ class Box {
             }
         }
 
-        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, int N) {
+        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, int N, double temp) {
             for (double t = 0.0; t <= T; t += dt) {
                 for (size_t i = 0; i < particles.size(); i++) {
                     calculateF_i(i, N);
                 }
                 for (size_t i = 0; i < particles.size(); i++) {
-                    particles[i].updatePosition(dt, Lx, Ly, Lz);
+                    particles[i].updatePosition(dt, Lx, Ly, Lz, temp);
                 }
             }
         }

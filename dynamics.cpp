@@ -202,7 +202,7 @@ int main(int argc, char* argv[]) {
 
     box.printParticles();
 
-    box.runSimulation(Lx, Ly, Lz, dt, T, N);
+    box.runSimulation(Lx, Ly, Lz, dt, T, N, temp);
 
     box.printParticles();
 }
