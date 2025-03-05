@@ -18,7 +18,12 @@ class Box {
         Box(double x_length, double y_length, double z_length) 
             : Lx(x_length), Ly(y_length), Lz(z_length) {
                 // nothing to do
-            }
+        }
+
+        // Destructor
+        ~Box() {
+
+        }
         
         // Function to add particles to the box
         void addParticle(const Particle& p) {

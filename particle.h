@@ -7,7 +7,7 @@ using namespace std;
 
 class Particle {
     public:
-    
+
         double x, y, z;      // Position
         double vx, vy, vz;   // Velocity
         int type;            // Particle type = 0 or 1
@@ -22,7 +22,12 @@ class Particle {
                 mass = 10.0;
             }
         }   
+        
+        // Destructor
+        ~Particle() {
 
+        }
+        
         // Updates the particles position and velocity:
         // r(i+1) = r(i) + dt * v(i)
         // v(i+1) = v(i) = dt * F(i)/mass
