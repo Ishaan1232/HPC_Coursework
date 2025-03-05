@@ -11,6 +11,10 @@ namespace cl = boost::program_options;
 #include "box.h"
 #include "particle.h"
 
+double rand_val(const double lower, const double upper) {
+    return (double(rand())/RAND_MAX) * (upper - lower) + lower;
+}
+
 int main(int argc, char* argv[]) {
 
     double dt = 0.001;  // default time step
@@ -166,6 +170,15 @@ int main(int argc, char* argv[]) {
                     return 0;
                 }
             }
+
+            for (int i = 0; i < N; i++) {
+                if ((i+1.0)/N > percent_type1/100) {
+                    type = 0;
+                }
+                Particle p(rand_val(0, Lx), rand_val(0, Ly), rand_val(0, Lz), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), type);
+                int n = 
+                box.addParticle(p);
+            }
         }
 
     } catch (exception& e) {
@@ -173,6 +186,5 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    cout << Lx << " " << Ly << " " << Lz << " " << dt << " " << T << " " << percent_type1 << " " << N << " " << temp << endl;
     box.printParticles();
 }
