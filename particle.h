@@ -20,12 +20,8 @@ class Particle {
         // Constructor: create particles with its position, velocity and type(mass)
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i) 
         : type(type_i) {  
-            r[0] = x_i;
-            r[1] = y_i;
-            r[2] = z_i;
-            v[0] = vx_i;
-            v[1] = vy_i;
-            v[2] = vz_i;
+            r[0] = x_i; r[1] = y_i; r[2] = z_i;
+            v[0] = vx_i; v[1] = vy_i; v[2] = vz_i;
             if (type == 0) {
                 mass = 1.0;
             } else {
@@ -35,7 +31,9 @@ class Particle {
         
         // Destructor
         ~Particle() {
-            // nothing to do
+            delete[] r;
+            delete[] v;
+            delete[] F;
         }
 
         void applyBC(double* pos, double* vel, double L) {
