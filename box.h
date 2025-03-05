@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath> 
 #include <vector>
+#include <fstream> 
+#include <iomanip>
 using namespace std;
 
 #include "particle.h"
@@ -13,12 +15,13 @@ class Box {
     public:
 
         double Lx, Ly, Lz;   // box dimensions
+        int N;
         vector<Particle> particles;  // particles stored in a vector
 
         // Constructor to intitialise box
         Box(double x_length, double y_length, double z_length) 
             : Lx(x_length), Ly(y_length), Lz(z_length) {
-                // nothing to do
+                N = 0;
         }
 
         // Destructor
@@ -29,10 +32,12 @@ class Box {
         // Function to add particles to the box
         void addParticle(const Particle& p) {
             particles.push_back(p);
+            N++;
         }
 
         void removeLastParticle() {
             particles.pop_back();
+            N--;
         }
 
         // Function to find the disatnce between two particles i and j
@@ -44,7 +49,7 @@ class Box {
 
         // Function to calculate F_i
 
-        void calculateF_i(int i, int N) {
+        void calculateF_i(int i) {
             double eps, sig, r_ij, dphi_dx;
             double diff[3];
             cblas_dscal(3, 0.0, particles[i].F, 1);
@@ -71,23 +76,52 @@ class Box {
             }
         }
 
-        // Function to print all particles in the box
-        void printParticles() {
-            for (size_t i = 0; i < particles.size(); i++) {  // use size_t so i is unsigned like size()
-                cout << "Particle " << i + 1 << " Position: ("
-                << particles[i].r[0] << ", " << particles[i].r[1] << ", " << particles[i].r[2] << ") Type:" << particles[i].type << endl;
-            }
-        }
+        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, double temp, bool ic_random) {
+            ofstream particleData("particleData.txt", ios::out | ios::trunc);
+            ofstream KEData("KEdata.txt", ios::out | ios::trunc);
 
-        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, int N, double temp) {
-            for (double t = 0.0; t <= T; t += dt) {
-                for (size_t i = 0; i < particles.size(); i++) {
-                    calculateF_i(i, N);
+            // if (temp != -1) {
+            //     double E = 0.0;
+            //     for (int i = 0; i < N; i++) {
+            //         E += particles[i].particleKE();
+            //         particles[i].updatePosition(0.0, Lx, Ly, Lz, temp, E);
+            //     }
+            // }
+
+            for (double t = 0; t <= T + dt; t += dt) {
+                double E = 0.0;
+                for (int i = 0; i < N; i++) {
+                    calculateF_i(i);                                   // force at time t, starting at t = 0.0
+
+                    E += particles[i].particleKE();
+
+                    if (fmod(t, 0.1) < dt) {
+                        if (!ic_random) {
+                            particleData << setw(7) << round(t * 10) / 10
+                                        << setw(7) << i + 1 
+                                        << setw(15) << particles[i].r[0]
+                                        << setw(15) << particles[i].r[1]
+                                        << setw(15) << particles[i].r[2]
+                                        << setw(15) << particles[i].v[0]
+                                        << setw(15) << particles[i].v[1]
+                                        << setw(15) << particles[i].v[2] << endl;
+                        }
+                    }
                 }
-                for (size_t i = 0; i < particles.size(); i++) {
-                    particles[i].updatePosition(dt, Lx, Ly, Lz, temp);
+
+                if (fmod(t, 0.1) < dt) {
+                    KEData  << setw(7) << round(t * 10) / 10 
+                            << setw(15) << E << endl;
                 }
+
+                for (int i = 0; i < N; i++) {
+                    particles[i].updatePosition(dt, Lx, Ly, Lz, temp, E);    // particles at time t + dt
+                }
+
             }
+
+            particleData.close();
+            KEData.close();
         }
 };
 

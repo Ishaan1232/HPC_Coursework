@@ -22,8 +22,8 @@ int main(int argc, char* argv[]) {
     double percent_type1 = 10.0;  // default percentage of type 1
     double T;    // Final time
     double temp = -1.0; // if temp = -1.0, the temperature is not fixed
-    int N;  // Number of particles
     int type = 1;
+    bool ic_random = false;
 
     Box box(Lx, Ly, Lz); // Initialise the simulation box of the Box class
 
@@ -121,29 +121,24 @@ int main(int argc, char* argv[]) {
         if (ic == "ic-one") {
             Particle p(10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
             box.addParticle(p);
-            N = 1;
         } else if (ic == "ic-one-vel") {
             Particle p(10.0, 10.0, 10.0, 5.0, 2.0, 1.0, 0);
             box.addParticle(p);
-            N = 1;
         } else if (ic == "ic-two") {
             Particle p1(8.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
             Particle p2(11.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0);
             box.addParticle(p1);
             box.addParticle(p2);
-            N = 2;
         } else if (ic == "ic-two-pass1") {
             Particle p1(8.5, 11.5, 10.0, 0.5, 0.0, 0.0, 0);
             Particle p2(11.5, 8.5, 10.0, -0.5, 0.0, 0.0, 0);
             box.addParticle(p1);
             box.addParticle(p2);
-            N = 2;
         } else if (ic == "ic-two-pass2") {
             Particle p1(8.5, 11.3, 10.0, 0.5, 0.0, 0.0, 0);
             Particle p2(11.5, 8.7, 10.0, -0.5, 0.0, 0.0, 0);
             box.addParticle(p1);
             box.addParticle(p2);
-            N = 2;
         } else if (ic == "ic-two-pass3") {
             Particle p1(8.5, 11.3, 10.0, 0.5, 0.0, 0.0, 1);
             Particle p2(11.5, 8.7, 10.0, -0.5, 0.0, 0.0, 1);
@@ -156,7 +151,7 @@ int main(int argc, char* argv[]) {
                 return 1;
             }
             
-            N = vm["N"].as<int>();
+            int N = vm["N"].as<int>();
 
             if (N <= 0) {
                 cerr << "Error: The number of particles N must be greater than 0" << endl;
@@ -193,6 +188,8 @@ int main(int argc, char* argv[]) {
                     i--;
                 } 
             }
+
+            ic_random = true;
         }
 
     } catch (exception& e) {
@@ -200,9 +197,5 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    box.printParticles();
-
-    box.runSimulation(Lx, Ly, Lz, dt, T, N, temp);
-
-    box.printParticles();
+    box.runSimulation(Lx, Ly, Lz, dt, T, temp, ic_random);
 }
