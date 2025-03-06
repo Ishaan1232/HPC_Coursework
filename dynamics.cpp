@@ -197,5 +197,5 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    box.runSimulation(Lx, Ly, Lz, dt, T, temp, ic_random, ic);
+    box.runSimulation(dt, T, temp, ic_random, ic);
 }
