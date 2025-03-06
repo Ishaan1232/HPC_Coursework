@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream> 
 #include <iomanip>
+#include <string>
 using namespace std;
 
 #include "particle.h"
@@ -76,9 +77,11 @@ class Box {
             }
         }
 
-        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, double temp, bool ic_random) {
-            ofstream particleData("particleData.txt", ios::out | ios::trunc);
-            ofstream KEData("KEdata.txt", ios::out | ios::trunc);
+        void runSimulation(double Lx, double Ly, double Lz, double dt, double T, double temp, bool ic_random, string ic) {
+            string particle_file = "Particle_Data/Data/" + ic + ".txt";
+            string KE_file = "KE_Data/Data/" + ic + ".txt";
+            ofstream particleData(particle_file, ios::out | ios::trunc);
+            ofstream KEData(KE_file, ios::out | ios::trunc);
 
             for (double t = 0; t < T + dt; t += dt) {
                 double E = 0.0;
@@ -98,7 +101,6 @@ class Box {
                                         << setw(15) << particles[i].v[1]
                                         << setw(15) << particles[i].v[2] << endl;
                         }
-                        cout << t << " " << particles[i].F[0] << " " << particles[i].F[1] << " " << particles[i].F[2] << endl;
                     }
                 }
 

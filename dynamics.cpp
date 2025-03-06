@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
     double temp = -1.0; // if temp = -1.0, the temperature is not fixed
     int type = 1;
     bool ic_random = false;
+    string ic;
 
     Box box(Lx, Ly, Lz); // Initialise the simulation box of the Box class
 
@@ -103,7 +104,6 @@ int main(int argc, char* argv[]) {
 
         // Handle --ic-* flags (ensure only one is chosen)
         int ic_count = 0;
-        string ic;
         vector<string> ic_options = {"ic-one", "ic-one-vel", "ic-two", "ic-two-pass1",
                                                 "ic-two-pass2", "ic-two-pass3", "ic-random"};
         for (const auto& option : ic_options) {
@@ -197,5 +197,5 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    box.runSimulation(Lx, Ly, Lz, dt, T, temp, ic_random);
+    box.runSimulation(Lx, Ly, Lz, dt, T, temp, ic_random, ic);
 }
