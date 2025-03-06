@@ -42,8 +42,8 @@ class Box {
 
         // Function to find the disatnce between two particles i and j
         double findR(int i, int j, double diff[3]) {
-            cblas_dcopy(3, particles[i].r, 1, diff, 1);
-            cblas_daxpy(3, -1.0, particles[j].r, 1, diff, 1);
+            cblas_dcopy(3, particles[j].r, 1, diff, 1);
+            cblas_daxpy(3, -1.0, particles[i].r, 1, diff, 1);
             return cblas_dnrm2(3, diff, 1);
         }
 
@@ -52,7 +52,8 @@ class Box {
         void calculateF_i(int i) {
             double eps, sig, r_ij, dphi_dx;
             double diff[3];
-            cblas_dscal(3, 0.0, particles[i].F, 1);
+            cblas_dscal(3, 0, particles[i].F, 1);
+            cout << particles[i].F[0] << endl;
             for (int j = 0; j < N; j++) {
                 if (i != j) {
                     if (particles[i].type == particles[j].type) {
@@ -80,15 +81,7 @@ class Box {
             ofstream particleData("particleData.txt", ios::out | ios::trunc);
             ofstream KEData("KEdata.txt", ios::out | ios::trunc);
 
-            // if (temp != -1) {
-            //     double E = 0.0;
-            //     for (int i = 0; i < N; i++) {
-            //         E += particles[i].particleKE();
-            //         particles[i].updatePosition(0.0, Lx, Ly, Lz, temp, E);
-            //     }
-            // }
-
-            for (double t = 0; t <= T + dt; t += dt) {
+            for (double t = 0; t < T + dt; t += dt) {
                 double E = 0.0;
                 for (int i = 0; i < N; i++) {
                     calculateF_i(i);                                   // force at time t, starting at t = 0.0
