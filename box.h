@@ -43,8 +43,8 @@ class Box {
 
         // Function to find the disatnce between two particles i and j
         double findR(int i, int j, double diff[3]) {
-            cblas_dcopy(3, particles[j].r, 1, diff, 1);
-            cblas_daxpy(3, -1.0, particles[i].r, 1, diff, 1);
+            cblas_dcopy(3, particles[i].r, 1, diff, 1);
+            cblas_daxpy(3, -1.0, particles[j].r, 1, diff, 1);
             return cblas_dnrm2(3, diff, 1);
         }
 
@@ -70,7 +70,7 @@ class Box {
                     }
 
                     r_ij = findR(i, j, diff);
-                    dphi_dx = 24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
+                    dphi_dx = -24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
 
                     cblas_daxpy(3, -dphi_dx, diff, 1, particles[i].F, 1);
                 }
