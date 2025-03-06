@@ -1,0 +1,218 @@
+commit de62ff315303999423fa51144d4023f81a92ef3a
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 19:08:38 2025 +0000
+
+    system dynamics completed
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit ffdb25d515e8080ac70e27b620f8a0dcb8d677be
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 16:51:52 2025 +0000
+
+    added a copy constructor to particle to fix memory issues
+
+M	box.h
+M	particle.h
+
+commit e676780e389531c03f79d634b3eb63666776d764
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:59:21 2025 +0000
+
+    chnaged box.h to blas implementation
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit f3d8cc984b8a64026f2f117e99ec5480ea420471
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:16:29 2025 +0000
+
+    Updated destructor in particl.h to free memory when destroyed
+
+M	particle.h
+
+commit 47c74a16ee5388ef1160ceeaa57b4b74d3b03cc0
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:13:02 2025 +0000
+
+    particle class now uses blas implementation
+
+M	particle.h
+
+commit 1c4e0f62a5624bf472f8a1a306d2b2d78357a63b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:43:59 2025 +0000
+
+    Testing test branch
+
+M	particle.h
+
+commit 3490f24c4218ec3c745ca1ac5b7be1e745b01ed5
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:42:17 2025 +0000
+
+    Testing test branch
+
+M	particle.h
+
+commit dff1202e62bcbbe37b4ff4b684cb92e3af409808
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:37:30 2025 +0000
+
+    Attempting BLAS for vector operations in test branch
+
+M	particle.h
+
+commit 2e336fe99b114f5c9c7233676c935b1841b91667
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:32:42 2025 +0000
+
+    Calcualted force on particle i
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit e1aa9d77d1ed2c47cc628f18a8d1cbe76896e396
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:01:06 2025 +0000
+
+    added function to particle class to calcualte force on particle i due to particle j
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit d02df12d61f2398b92a026f447ea427b69b39e26
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 01:41:55 2025 +0000
+
+    finsihed particle insertion with separation check, began simulation running
+
+M	box.h
+M	dynamics.cpp
+D	help.txt
+M	particle.h
+
+commit cd71532f41604be4d89a8739448950649eccc3aa
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 00:47:31 2025 +0000
+
+    began random particle insertion
+
+M	dynamics.cpp
+
+commit d1ab87fa066f96b83b54e26ef9fd8c60b1b13371
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 00:19:06 2025 +0000
+
+    Switched command line arguemnt parsing with boost_program_options
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit 8f8b221917fa702cd9fe12a9ad1df5ed3020c812
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 13:01:29 2025 +0000
+
+    Added specific intiial conditions to box
+
+M	box.h
+M	dynamics.cpp
+
+commit 0b42b05b3155fed97787e17475b4b84983e9cc33
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 02:57:26 2025 +0000
+
+    Remainign command line arguments added
+
+M	dynamics.cpp
+
+commit a21b1d8cd815cc6b422408324769c5fdfd6f3f60
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 02:00:28 2025 +0000
+
+    help command-line added via txt file
+
+M	box.h
+M	dynamics.cpp
+A	help.txt
+
+commit 940b6621e3831f95ec54fc5fe676930dd0ce7a2b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 00:53:23 2025 +0000
+
+    added header guards
+
+M	dynamics.cpp
+M	particle.h
+
+commit 30f1978da17213062b6d47d0f52c9f06ef4a1ec5
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 00:48:31 2025 +0000
+
+    added class for the box, including constructor, addign aprticles and finding particle separation
+
+A	box.h
+
+commit 0bc2d83d43c4c919bac515b5eabb2a09af4939a4
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 23:11:07 2025 +0000
+
+    testing still
+
+M	dynamics.cpp
+
+commit c5a5866148ffedf63d39d04432a2c5d41dfb87e9
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 23:00:38 2025 +0000
+
+    testing class
+
+M	dynamics.cpp
+
+commit a44580a6eda9cbabd1d3d6193db914bdb70b6efe
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 22:52:55 2025 +0000
+
+    added particle constructor and basic functions
+
+M	dynamics.cpp
+M	particle.h
+
+commit f9f75e3185cfce0c20fec2877621daa3e11fdf51
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 21:49:06 2025 +0000
+
+    added header file for particle class
+
+A	particle.h
+
+commit 383868dea1ab34cbe4b9d4763fd22ebf3b510cac
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:39:38 2025 +0000
+
+    testing remote
+
+M	dynamics.cpp
+
+commit b3e51233e5e1fda449fc60035295eff4ad0c0e79
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:15:07 2025 +0000
+
+    started code
+
+M	dynamics.cpp
+
+commit 60d5301be82b8799c13170f582347a27f1696d16
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:12:12 2025 +0000
+
+    created c++ file
+
+A	dynamics.cpp

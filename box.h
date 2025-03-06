@@ -53,7 +53,6 @@ class Box {
             double eps, sig, r_ij, dphi_dx;
             double diff[3];
             cblas_dscal(3, 0, particles[i].F, 1);
-            cout << particles[i].F[0] << endl;
             for (int j = 0; j < N; j++) {
                 if (i != j) {
                     if (particles[i].type == particles[j].type) {
@@ -70,7 +69,7 @@ class Box {
                     }
 
                     r_ij = findR(i, j, diff);
-                    dphi_dx = -24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
+                    dphi_dx = 24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
 
                     cblas_daxpy(3, -dphi_dx, diff, 1, particles[i].F, 1);
                 }
@@ -99,6 +98,7 @@ class Box {
                                         << setw(15) << particles[i].v[1]
                                         << setw(15) << particles[i].v[2] << endl;
                         }
+                        cout << t << " " << particles[i].F[0] << " " << particles[i].F[1] << " " << particles[i].F[2] << endl;
                     }
                 }
 
@@ -112,6 +112,7 @@ class Box {
                 }
 
             }
+
 
             particleData.close();
             KEData.close();
