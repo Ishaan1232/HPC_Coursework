@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath> 
 #include <tuple>
+#include <fstream> 
+#include <iomanip>
 using namespace std;
 
 #include <cblas.h>
@@ -30,10 +32,11 @@ class Particle {
 
         // Updates the particles position and velocity:
         void updatePosition(double dt);
-        void updateVelocity(double dt, double Lx, double Ly, double Lz, double temp, double E);
+        void updateVelocity(double dt, double Lx, double Ly, double Lz);
         
         // calcaultes kinetic energy of particle
         double particleKE();
+        void scaleTemp(double E, double temp);
 
         // getters
         double* get_r() {return r;}

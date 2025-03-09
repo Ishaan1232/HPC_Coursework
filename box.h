@@ -26,8 +26,15 @@ class Box {
         void addParticle(const Particle& p);  // Function to add particles to the box
         void removeLastParticle();  // Function to remove the last added particle from the box
         double findR(int i, int j, double diff[3]);  // Function to find the disatnce between two particles i and j
+        double systemKE();
 
         void runSimulation(double dt, double T, double temp, bool ic_random, string ic);  // Function to run the simulation
+
+        // Getters
+        double get_Lx() {return Lx;}
+        double get_Ly() {return Ly;}
+        double get_Lz() {return Lz;}
+        int get_N() {return particles.size();}
 };
 
 #endif // BOX_H

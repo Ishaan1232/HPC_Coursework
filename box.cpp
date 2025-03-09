@@ -48,6 +48,14 @@ void Box::calculateF_i(int i) {
     particles[i].set_F(F_i);
 }
 
+double Box::systemKE() {
+    double E = 0.0;
+    for (size_t i = 0; i < particles.size(); i++) {
+        E += particles[i].particleKE();
+    }
+    return E;
+}
+
 void Box::runSimulation(double dt, double T, double temp, bool ic_random, string ic) {
     string particle_file = "Particle_Data/Data/" + ic + ".txt";
     string KE_file = "KE_Data/Data/" + ic + ".txt";
@@ -56,8 +64,15 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
 
     int N = particles.size();
 
+    double E = 0.0;
+    if (temp != -1) {
+        E = systemKE();
+        for (int i = 0; i < N; i++) {
+            particles[i].scaleTemp(E, temp);
+        }
+    }
+
     for (double t = 0; t < T + dt; t += dt) {
-        double E = 0.0;
         for (int i = 0; i < N; i++) {
             if (fmod(t, 0.1) < dt) {
                 if (!ic_random) {
@@ -76,18 +91,19 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
 
         for (int i = 0; i < N; i++) {
             calculateF_i(i);                                   // force
-            E += particles[i].particleKE();
+        }
+
+        E = systemKE();
+        if (fmod(t, 0.1) < dt) {
+            KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;
         }
 
         for (int i = 0; i < N; i++) {
-            particles[i].updateVelocity(dt, Lx, Ly, Lz, temp, E);    
-        }
-
-        if (fmod(t, 0.1) < dt) {
-            KEData  << setw(7) << round(t * 10) / 10 
-                    << setw(15) << E << endl;
-        }
-        
+            particles[i].updateVelocity(dt, Lx, Ly, Lz);
+            if (temp != -1) {
+                particles[i].scaleTemp(E, temp);
+            }    
+        }        
     }
 
     particleData.close();
