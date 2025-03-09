@@ -59,10 +59,6 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     for (double t = 0; t < T + dt; t += dt) {
         double E = 0.0;
         for (int i = 0; i < N; i++) {
-            E += particles[i].particleKE();
-        }
-
-        for (int i = 0; i < N; i++) {
             if (fmod(t, 0.1) < dt) {
                 if (!ic_random) {
                     particleData << setw(7) << round(t * 10) / 10
@@ -75,7 +71,16 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
                                 << setw(15) << particles[i].get_v()[2] << endl;
                 }
             }
-            particles[i].updatePosition(dt, Lx, Ly, Lz, temp, E);    
+            particles[i].updatePosition(dt);            // update position first
+        }
+
+        for (int i = 0; i < N; i++) {
+            calculateF_i(i);                                   // force
+            E += particles[i].particleKE();
+        }
+
+        for (int i = 0; i < N; i++) {
+            particles[i].updateVelocity(dt, Lx, Ly, Lz, temp, E);    
         }
 
         if (fmod(t, 0.1) < dt) {
@@ -83,9 +88,6 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
                     << setw(15) << E << endl;
         }
         
-        for (int i = 0; i < N; i++) {
-            calculateF_i(i);                                   // force
-        }
     }
 
     particleData.close();

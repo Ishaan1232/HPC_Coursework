@@ -37,8 +37,12 @@ void Particle::applyBC(double* pos, double* vel, double L) {
     }
 }
 
-void Particle::updatePosition(double dt, double Lx, double Ly, double Lz, double temp, double E) {
+void Particle::updatePosition(double dt) {
     cblas_daxpy(3, dt, v, 1, r, 1);    // update position r = r + dt*v
+}
+
+
+void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz, double temp, double E) {
     cblas_daxpy(3, dt/mass, F, 1, v, 1);  // update velocity v = v + dt/mass * F
     
     // Apply the boundary conditions

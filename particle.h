@@ -29,7 +29,8 @@ class Particle {
         ~Particle();
 
         // Updates the particles position and velocity:
-        void updatePosition(double dt, double Lx, double Ly, double Lz, double temp, double E);
+        void updatePosition(double dt);
+        void updateVelocity(double dt, double Lx, double Ly, double Lz, double temp, double E);
         
         // calcaultes kinetic energy of particle
         double particleKE();
