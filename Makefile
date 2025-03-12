@@ -4,6 +4,7 @@ HDRS = box.h particle.h
 OBJS = dynamics.o box.o particle.o
 TEST_OBJS = test.o box.o particle.o
 LDLIBS = -lblas -lboost_program_options -lboost_unit_test_framework
+BUILDS = md unittests
 
 default: md
 
@@ -22,4 +23,4 @@ test.o: test.cpp
 .PHONY : clean
 
 clean : 
-	-rm -f *.o md unittests
+	-rm -f *.o $(BUILDS)
