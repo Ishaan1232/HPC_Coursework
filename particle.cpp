@@ -56,8 +56,7 @@ void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
     applyBC(&r[2], &v[2], Lz);
 }
 
-void Particle::scaleTemp(double E, double temp) {
-    double lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
+void Particle::scaleTemp(double lambda) {
     for (int m = 0; m < 3; m++) {
         v[m] *= lambda;
     }

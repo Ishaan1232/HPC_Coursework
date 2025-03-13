@@ -31,11 +31,11 @@ void Box::calculateF_i(int i, bool ic_random) {
     double diff[3];
     double F_i[3] = {0.0, 0.0, 0.0};
     Particle& p_i = particles[i];
-    const int type_i = p_i.get_type();
     for (int j = 0; j < N; j++) {
         if (i != j) {
-            if (type_i == particles[j].get_type()) {
-                if (type_i == 0) {
+            Particle& p_j = particles[j];
+            if (p_i.type == p_j.type) {
+                if (p_i.type == 0) {
                     eps = 3.0; 
                     sig = 1.0;
                 } else {
@@ -48,7 +48,7 @@ void Box::calculateF_i(int i, bool ic_random) {
             }
 
             for (int m = 0; m < 3; m++) {
-                diff[m] = p_i.r[m] - particles[j].r[m];
+                diff[m] = p_i.r[m] - p_j.r[m];
             }
 
             r_ij2 = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
@@ -86,11 +86,12 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);
 
-    double E = 0.0;
+    double E = 0.0, lambda;
     if (temp != -1) {
         E = systemKE();
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
         for (int i = 0; i < N; i++) {
-            particles[i].scaleTemp(E, temp);
+            particles[i].scaleTemp(lambda);
         }
     }
 
@@ -116,14 +117,16 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         }
 
         E = systemKE();
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
         if (fmod(t, 0.1) < dt) {
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;
         }
 
         for (int i = 0; i < N; i++) {
-            particles[i].updateVelocity(dt, Lx, Ly, Lz);
+            Particle& p = particles[i];
+            p.updateVelocity(dt, Lx, Ly, Lz);
             if (temp != -1) {
-                particles[i].scaleTemp(E, temp);
+                p.scaleTemp(lambda);
             }    
         }        
     }
