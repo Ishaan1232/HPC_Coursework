@@ -1,4 +1,4 @@
-#ifndef BOX_H 
+#ifndef BOX_H
 #define BOX_H// header guard to prevent being included in multiple files
 
 #include <iostream>
@@ -7,8 +7,6 @@
 #include <fstream> 
 #include <iomanip>
 #include <string>
-using namespace std;
-
 #include "particle.h"
 
 class Box {

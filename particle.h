@@ -6,7 +6,6 @@
 #include <tuple>
 #include <fstream> 
 #include <iomanip>
-#include <array>
 using namespace std;
 
 class Particle {
@@ -46,4 +45,4 @@ class Particle {
         void set_F(double F_new[3]);
 };
 
-#endif // particle.h
+#endif // PARTICLE_H
