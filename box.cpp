@@ -46,7 +46,8 @@ void Box::calculateF_i(int i) {
             }
 
             r_ij = findR(i, j, diff);
-            dphi_dx = 24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
+            double sig_rij = (sig*sig*sig*sig*sig*sig)/(r_ij*r_ij*r_ij*r_ij*r_ij*r_ij);  // (sigma/r)^6 (avoids pow)
+            dphi_dx = 24 * eps * sig_rij * (2 * sig_rij  - 1) / (r_ij*r_ij);
 
             for (int m = 0; m < 3; m++) {
                 F_i[m] -= dphi_dx * diff[m];
