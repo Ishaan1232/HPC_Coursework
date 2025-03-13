@@ -6,18 +6,19 @@
 #include <tuple>
 #include <fstream> 
 #include <iomanip>
+#include <array>
 using namespace std;
 
 class Particle {
     private:
-        double* v;      // Velocity
-        double* F;      // Force at time t
+        array<double, 3> v;      // Velocity
+        array<double, 3> F;      // Force at time t
         int type;            // Particle type = 0 or 1
         double mass;         // Mass (1 for type = 0, 10 for type = 1)
         void applyBC(double* pos, double* vel, double L);
 
     public:
-        double* r;      // Position
+        array<double, 3> r;      // Position
         // Constructor: create particles with its position, velocity and type(mass)
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i);
 
@@ -36,7 +37,6 @@ class Particle {
         void scaleTemp(double E, double temp);
 
         // getters
-        const double* get_r() {return r;}
         const double* get_v() {return v;}
         const double* get_F() {return F;}
         const int get_type() {return type;}
