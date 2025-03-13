@@ -112,23 +112,20 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             particles[i].updatePosition(dt);            // update position first
         }
 
-        for (int i = 0; i < N; i++) {
-            calculateF_i(i, ic_random);                                   // force
-        }
-
         E = systemKE();
         lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
         if (fmod(t, 0.1) < dt) {
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;
-        }
-
+        }     
+        
         for (int i = 0; i < N; i++) {
             Particle& p = particles[i];
+            calculateF_i(i, ic_random);                                   // force
             p.updateVelocity(dt, Lx, Ly, Lz);
             if (temp != -1) {
                 p.scaleTemp(lambda);
             }    
-        }        
+        } 
     }
 
     particleData.close();
