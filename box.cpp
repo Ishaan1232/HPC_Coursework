@@ -28,10 +28,12 @@ bool Box::addParticle(Particle& p) {
 
 void Box::calculateF_i(int i, bool ic_random) {
     double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2;
-    double diff[3];
-    double F_i[3] = {0.0, 0.0, 0.0};
+    array<double, 3> diff;
+    array<double, 3> F_i = {0.0, 0.0, 0.0};
+    
     Particle& p_i = particles[i];
     const int type_i = p_i.get_type();
+
     for (int j = 0; j < N; j++) {
         if (i != j) {
             if (type_i == particles[j].get_type()) {
@@ -62,7 +64,7 @@ void Box::calculateF_i(int i, bool ic_random) {
 
             inv_rij2 = 1.0/(r_ij2);
             sig_rij = (sig*sig*sig*sig*sig*sig) * inv_rij2*inv_rij2*inv_rij2;  // (sigma/r)^6 (avoids pow)
-            dphi_dx = -24 * eps * sig_rij * (2 * sig_rij  - 1) * inv_rij2;
+            dphi_dx = -24.0 * eps * sig_rij * (2.0 * sig_rij  - 1.0) * inv_rij2;
 
             for (int m = 0; m < 3; m++) {
                 F_i[m] -= dphi_dx * diff[m];
