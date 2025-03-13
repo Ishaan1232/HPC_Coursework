@@ -39,11 +39,11 @@ class Particle {
         void scaleTemp(double E, double temp);
 
         // getters
-        double* get_r() {return r;}
-        double* get_v() {return v;}
-        double* get_F() {return F;}
-        int get_type() {return type;}
-        double get_mass() {return mass;}
+        const double* get_r() {return r;}
+        const double* get_v() {return v;}
+        const double* get_F() {return F;}
+        const int get_type() {return type;}
+        const double get_mass() {return mass;}
 
         // setter
         void set_F(double F_new[3]);

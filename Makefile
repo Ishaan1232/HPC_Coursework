@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -std=c++11 -Wall -g -O0
 HDRS = box.h particle.h
 OBJS = dynamics.o box.o particle.o
 TEST_OBJS = test.o box.o particle.o

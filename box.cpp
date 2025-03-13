@@ -14,16 +14,22 @@ void Box::removeLastParticle() {
 }
 
 double Box::findR(int i, int j, double diff[3]) {
-    cblas_dcopy(3, particles[j].get_r(), 1, diff, 1);
-    cblas_daxpy(3, -1.0, particles[i].get_r(), 1, diff, 1);
-    return cblas_dnrm2(3, diff, 1);
+    const double* r_j = particles[j].get_r(); 
+    const double* r_i = particles[i].get_r();  // Get the pointer to r
+    double norm = 0.0;
+    for (int m = 0; m < 3; m++) {
+        diff[m] = r_j[m];
+        diff[m] -= r_i[m];
+        norm += diff[m] * diff[m];
+    }
+    
+    return sqrt(norm);
 }
 
 void Box::calculateF_i(int i) {
     double eps, sig, r_ij, dphi_dx;
     double diff[3];
-    double* F_i = particles[i].get_F();
-    cblas_dscal(3, 0, F_i, 1);
+    double F_i[3] = {0.0, 0.0, 0.0};
     for (int j = 0; j < int(particles.size()); j++) {
         if (i != j) {
             if (particles[i].get_type() == particles[j].get_type()) {
@@ -42,7 +48,10 @@ void Box::calculateF_i(int i) {
             r_ij = findR(i, j, diff);
             dphi_dx = 24 * eps * (2*pow(sig/r_ij, 12) - pow(sig/r_ij, 6)) / (r_ij*r_ij);
 
-            cblas_daxpy(3, -dphi_dx, diff, 1, F_i, 1);
+            for (int m = 0; m < 3; m++) {
+                F_i[m] -= dphi_dx * diff[m];
+            }
+            
         }
     }
     particles[i].set_F(F_i);

@@ -38,12 +38,17 @@ void Particle::applyBC(double* pos, double* vel, double L) {
 }
 
 void Particle::updatePosition(double dt) {
-    cblas_daxpy(3, dt, v, 1, r, 1);    // update position r = r + dt*v
+    for (int i = 0; i < 3; i++) {
+        r[i] += dt * v[i];
+    }
+    
 }
 
 
 void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
-    cblas_daxpy(3, dt/mass, F, 1, v, 1);  // update velocity v = v + dt/mass * F
+    for (int i = 0; i < 3; i++) {
+        v[i] += dt/mass * F[i];
+    }
     
     // Apply the boundary conditions
     applyBC(&r[0], &v[0], Lx);
@@ -57,7 +62,7 @@ void Particle::scaleTemp(double E, double temp) {
 
 double Particle::particleKE() {
     double speed = cblas_dnrm2(3, v, 1);
-    return 0.5 * mass * pow(speed, 2);
+    return 0.5 * mass * speed*speed;
 }
 
 void Particle::set_F(double F_new[3]) {
