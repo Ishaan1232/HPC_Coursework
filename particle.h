@@ -8,11 +8,8 @@
 #include <iomanip>
 using namespace std;
 
-#include <cblas.h>
-
 class Particle {
     private:
-        double* r;      // Position
         double* v;      // Velocity
         double* F;      // Force at time t
         int type;            // Particle type = 0 or 1
@@ -20,7 +17,7 @@ class Particle {
         void applyBC(double* pos, double* vel, double L);
 
     public:
-        
+        double* r;      // Position
         // Constructor: create particles with its position, velocity and type(mass)
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i);
 

@@ -10,21 +10,19 @@
 using namespace std;
 
 #include "particle.h"
-#include <cblas.h>
 
 class Box {
     private:
         const double Lx, Ly, Lz;   // box dimensions
         vector<Particle> particles;  // particles stored in a vector
-        void calculateF_i(int i);  // Function to calculate F_i
+        void calculateF_i(Particle& p_i);  // Function to calculate F_i
 
     public:
 
         Box(const double x_length, const double y_length, const double z_length);  // Constructor to intitialise box
         ~Box() = default;  // Default destructor
         
-        void addParticle(const Particle& p);  // Function to add particles to the box
-        void removeLastParticle();  // Function to remove the last added particle from the box
+        bool addParticle(Particle& p);  // Function to add particles to the box
         double findR(int i, int j, double diff[3]);  // Function to find the disatnce between two particles i and j
         double systemKE();
 
