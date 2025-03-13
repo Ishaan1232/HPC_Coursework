@@ -8,19 +8,15 @@ Box::Box(const double x_length, const double y_length, const double z_length)
 bool Box::addParticle(Particle& p) {
     particles.push_back(p);
 
-    int i = 0;
-
-    for (auto& p_j : particles) {
-        if (&p == &p_j) {continue;}
-
-        cout << "Particle j = " << i++ << endl;
+    for (int j = 0; j < int(particles.size()) - 1; j++) {
 
         double d, R2 = 0.0;
         for (int m = 0; m < 3; m++) {
-            d = p.r[m] - p_j.r[m];
+            d = p.r[m] - particles[j].r[m];
             R2 += d*d;
         }
         if (R2 < 0.25) {
+            particles.pop_back();
             return false;
         }
         
@@ -28,42 +24,43 @@ bool Box::addParticle(Particle& p) {
     return true;
 }
 
-void Box::calculateF_i(Particle& p_i) {
+
+void Box::calculateF_i(int i) {
     double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2;
     double diff[3];
     double F_i[3] = {0.0, 0.0, 0.0};
+    Particle& p_i = particles[i];
     const int type_i = p_i.get_type();
-    for (auto& p_j : particles) {
-        if (&p_i == &p_j) continue; 
-
-        if (type_i == p_j.get_type()) {
-            if (type_i ==  0) {
-                eps = 3.0; 
-                sig = 1.0;
+    for (int j = 0; j < int(particles.size()); j++) {
+        if (i != j) {
+            if (type_i == particles[j].get_type()) {
+                if (type_i == 0) {
+                    eps = 3.0; 
+                    sig = 1.0;
+                } else {
+                    eps = 60.0;
+                    sig = 3.0;
+                }
             } else {
-                eps = 60.0;
-                sig = 3.0;
+                eps = 15.0;
+                sig = 2.0;
             }
-        } else {
-            eps = 15.0;
-            sig = 2.0;
-        }
 
-        for (int m = 0; m < 3; m++) {
-            diff[m] = p_i.r[m] - p_j.r[m];
-        }
+            for (int m = 0; m < 3; m++) {
+                diff[m] = p_i.r[m] - particles[j].r[m];
+            }
 
-        r_ij2 = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
+            r_ij2 = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
 
-        inv_rij2 = 1.0/(r_ij2);
-        sig_rij = (sig*sig*sig*sig*sig*sig) * inv_rij2*inv_rij2*inv_rij2;  // (sigma/r)^6 (avoids pow)
-        dphi_dx = -24 * eps * sig_rij * (2 * sig_rij  - 1) * inv_rij2;
+            inv_rij2 = 1.0/(r_ij2);
+            sig_rij = (sig*sig*sig*sig*sig*sig) * inv_rij2*inv_rij2*inv_rij2;  // (sigma/r)^6 (avoids pow)
+            dphi_dx = -24 * eps * sig_rij * (2 * sig_rij  - 1) * inv_rij2;
 
-        for (int m = 0; m < 3; m++) {
-            F_i[m] -= dphi_dx * diff[m];
-        }
+            for (int m = 0; m < 3; m++) {
+                F_i[m] -= dphi_dx * diff[m];
+            }
             
-        
+        }
     }
     p_i.set_F(F_i);
 }
@@ -109,8 +106,8 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             particles[i].updatePosition(dt);            // update position first
         }
 
-        for (auto& p : particles) {
-            calculateF_i(p);                                   // force
+        for (int i = 0; i < N; i++) {
+            calculateF_i(i);                                   // force
         }
 
         E = systemKE();

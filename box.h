@@ -15,7 +15,7 @@ class Box {
     private:
         const double Lx, Ly, Lz;   // box dimensions
         vector<Particle> particles;  // particles stored in a vector
-        void calculateF_i(Particle& p_i);  // Function to calculate F_i
+        void calculateF_i(int i);  // Function to calculate F_i
 
     public:
 

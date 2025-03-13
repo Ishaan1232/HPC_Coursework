@@ -172,15 +172,11 @@ int main(int argc, char* argv[]) {
                 }
 
                 Particle p(rand_val(0, Lx), rand_val(0, Ly), rand_val(0, Lz), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), type);
-                bool keep = box.addParticle(p);
-                // if (box.addParticle(p)) {
-                //     i--;
-                //     cout << "remved" << endl;
-                // }
-                cout << keep << endl;
+                if (!box.addParticle(p)) {
+                    i--;
+                }   
             }
 
-            cout << "all added" << endl;
             ic_random = true;
         }
 
