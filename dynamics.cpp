@@ -171,24 +171,16 @@ int main(int argc, char* argv[]) {
                     type = 0;
                 }
 
-                bool remove = false;
                 Particle p(rand_val(0, Lx), rand_val(0, Ly), rand_val(0, Lz), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), rand_val(-0.5, 0.5), type);
-                box.addParticle(p);
-
-                double diff[3];
-                for (int j = 0; j < i; j++) {
-                    if (box.findR(i, j, diff) < 0.5) {
-                        remove = true;
-                        break;
-                    }
-                }
-
-                if (remove) {
-                    box.removeLastParticle();
-                    i--;
-                } 
+                bool keep = box.addParticle(p);
+                // if (box.addParticle(p)) {
+                //     i--;
+                //     cout << "remved" << endl;
+                // }
+                cout << keep << endl;
             }
 
+            cout << "all added" << endl;
             ic_random = true;
         }
 

@@ -57,14 +57,19 @@ void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
 }
 
 void Particle::scaleTemp(double E, double temp) {
-    cblas_dscal(3, sqrt(temp/(2*E/(3 * 0.8314459920816467))), v, 1);
+    double lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
+    for (int m = 0; m < 3; m++) {
+        v[m] *= lambda;
+    }
 }
 
 double Particle::particleKE() {
-    double speed = cblas_dnrm2(3, v, 1);
-    return 0.5 * mass * speed*speed;
+    double speed2 = v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
+    return 0.5 * mass * speed2;
 }
 
 void Particle::set_F(double F_new[3]) {
-    cblas_dcopy(3, F_new, 1, F, 1);
+    for (int m = 0; m < 3; m++) {
+        F[m] = F_new[m];
+    }
 }
