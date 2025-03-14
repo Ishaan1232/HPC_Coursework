@@ -20,7 +20,13 @@ unittests: $(TEST_OBJS)
 test.o: test.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
+doc: Doxyfile
+	doxygen $<
+
+Doxyfile:
+	doxygen -g $@
+
 .PHONY : clean
 
 clean : 
-	-rm -f *.o $(BUILDS)
+	-rm -f *.o $(BUILDS) -rf html latex Doxyfile

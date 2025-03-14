@@ -9,27 +9,31 @@
 #include <string>
 #include "particle.h"
 
+/**
+ * @class Box
+ * @brief Represents the simulation box 
+ */
 class Box {
     private:
-        const double Lx, Ly, Lz;   // box dimensions
-        vector<Particle> particles;  // particles stored in a vector
-        int N = 0;
+        const double Lx, Ly, Lz;   ///< Box dimensions in the x, y and z directions
+        vector<Particle> particles;  ///< Vector to hold particles
+        int N = 0;                  ///< Number of particles
 
     public:
-        Box(const double x_length, const double y_length, const double z_length);  // Constructor to intitialise box
-        ~Box() = default;  // Default destructor
-        
-        bool addParticle(Particle& p);  // Function to add particles to the box
-        double findR(int i, int j, double diff[3]);  // Function to find the disatnce between two particles i and j
+        /// @brief Default constructor
+        Box();
+        /// @brief Construct the test box with the given dimensions
+        Box(const double x_length, const double y_length, const double z_length);  
+        /// @brief Default destructor
+        ~Box() = default;
+        /// @brief Adds a particle to the box and ensures there is a minimum separation.
+        bool addParticle(Particle& p); 
+        /// @brief Calculate the force on a particle exerted by all other particles
+        void calculateF_i(Particle& p_i, int i);   
+        /// @brief Return the kinetic energy of the system
         double systemKE();
-
-        void runSimulation(double dt, double T, double temp, bool ic_random, string ic);  // Function to run the simulation
-
-        // Getters
-        double get_Lx() {return Lx;}
-        double get_Ly() {return Ly;}
-        double get_Lz() {return Lz;}
-        int get_N() {return particles.size();}
+        /// @brief Run the simulation once all particles are added successfully
+        void runSimulation(double dt, double T, double temp, bool ic_random, string ic); 
 };
 
 #endif // BOX_H

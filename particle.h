@@ -8,37 +8,45 @@
 #include <iomanip>
 using namespace std;
 
+/**
+ * @class Particle
+ * @brief Represents a particle in the box
+ */
 class Particle {
     private:
-        double* v;      // Velocity
-        double mass;         // Mass (1 for type = 0, 10 for type = 1)
+        double* v;           ///< Velocity of the particle
+        double mass;         ///< Mass of the particle
+        /// @brief Checks and applies boundary conditions to ensure the particle stays within the domain.
         void applyBC(double* pos, double* vel, double L);
 
     public:
-        double* r;      // Position
-        double* F;      // Force at time t
-        int type;            // Particle type = 0 or 1
+        double* r;           ///< Position of the particle
+        double* F;           ///< Force of the particle
+        int type;            ///< Type of the particle
 
-        // Constructor: create particles with its position, velocity and type(mass)
+        /// @brief Default constructor
+        Particle();
+        /// @brief Constructor for particles with given position, velocity and type(mass)
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i);
-
-        // Copy Constructor
+        /// @brief Copy constructor
         Particle(const Particle& p);    
-        
-        // Destructor
+        /// @brief Deconstructor
         ~Particle();
-
-        // Updates the particles position and velocity:
+        /// @brief Updates the particle's position
         void updatePosition(double dt);
+        /// @brief Updates the particle's velocity
         void updateVelocity(double dt, double Lx, double Ly, double Lz);
-        
-        // calcaultes kinetic energy of particle
+        /// @brief Calculates the particle's kinetic energy
         double particleKE();
+        /// @brief Scales the particle's velocity for constant temperature
         void scaleTemp(double lambda);
 
-        // getters
+        /**
+         * @brief Get the velocity of the particle
+         * 
+         * @return Pointer to the velocity of the particle
+         */
         const double* get_v() {return v;}
-        const double get_mass() {return mass;}
 };
 
 #endif // PARTICLE_H

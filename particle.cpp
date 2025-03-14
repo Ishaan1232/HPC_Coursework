@@ -1,9 +1,21 @@
 #include "particle.h"
 
+/** 
+ * Initializes the particle with given position, velocity, and type.
+ * The particle's force is initialised to zero.
+ * 
+ * @param x_i Initial x-coordinate.
+ * @param y_i Initial y-coordinate.
+ * @param z_i Initial z-coordinate.
+ * @param vx_i Initial velocity in x-direction.
+ * @param vy_i Initial velocity in y-direction.
+ * @param vz_i Initial velocity in z-direction.
+ * @param type_i Particle type (0 or 1), which determines mass.
+ */
 Particle::Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i) : type(type_i) {  
     r = new double[3]{x_i, y_i, z_i};
     v = new double[3]{vx_i, vy_i, vz_i};
-    F = new double[3]{0.0, 0.0, 0.0};  // Initialize force
+    F = new double[3]{0.0, 0.0, 0.0}; 
     if (type == 0) {
         mass = 1.0;
     } else {
@@ -11,6 +23,11 @@ Particle::Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i,
     }
 }   
 
+/**
+ * Creates a copy of another Particle instance
+ * 
+ * @param p The particlebeign copied.
+ */
 Particle::Particle(const Particle& p) {
     type = p.type;
     mass = p.mass;
@@ -19,6 +36,10 @@ Particle::Particle(const Particle& p) {
     F = new double[3]{p.F[0], p.F[1], p.F[2]};
 }       
 
+/**
+ * Deallocate dynamic memory for position, velocity and force arrays.
+ * Set points to position, velocity and force to nullptr.
+ */
 Particle::~Particle() {
     delete[] r;
     delete[] v;
@@ -26,9 +47,17 @@ Particle::~Particle() {
     r = v = F = nullptr;
 }
 
+/** 
+ * If the particle position goes out of bounds, it is reflected back into the domain.
+ * The velocity is chnaged as required.
+ * 
+ * @param pos Pointer to the position coordinate to be corrected.
+ * @param vel Pointer to the velocity coordinate to be changed.
+ * @param L Box dimension for the given coordinate.
+ */
 void Particle::applyBC(double* pos, double* vel, double L) {
     if (*pos < 0) {
-        *pos = -*pos;  // Reflect inside the boundary
+        *pos = -*pos; 
         *vel = abs(*vel);
     }
     if (*pos > L) {
@@ -37,6 +66,11 @@ void Particle::applyBC(double* pos, double* vel, double L) {
     }
 }
 
+/**
+ * Uses the equation \f$ r = r + v \cdot dt \f$.
+ * 
+ * @param dt Time step.
+ */
 void Particle::updatePosition(double dt) {
     for (int i = 0; i < 3; i++) {
         r[i] += dt * v[i];
@@ -44,6 +78,15 @@ void Particle::updatePosition(double dt) {
     
 }
 
+/**
+ * Uses the equation \f$ v = v + (F/m) \cdot dt \f$.
+ * Also applies boundary conditions to prevent particles from exiting the simulation domain.
+ * 
+ * @param dt Time step.
+ * @param Lx Box dimension in the x-direction.
+ * @param Ly Box dimension in the y-direction.
+ * @param Lz Box dimension in the z-direction.
+ */
 void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
     for (int i = 0; i < 3; i++) {
         v[i] += dt/mass * F[i];
@@ -55,12 +98,23 @@ void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
     applyBC(&r[2], &v[2], Lz);
 }
 
+
+/**
+ * Uses \f$ v = \lambda \cdot v \f$
+ * 
+ * @param lambda Scaling factor for velocity adjustment.
+ */
 void Particle::scaleTemp(double lambda) {
     for (int m = 0; m < 3; m++) {
         v[m] *= lambda;
     }
 }
 
+/**
+ * Uses the formula: \f$ KE = \frac{1}{2} m v^2 \f$.
+ * 
+ * @return The kinetic energy of the particle.
+ */
 double Particle::particleKE() {
     double speed2 = v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
     return 0.5 * mass * speed2;
