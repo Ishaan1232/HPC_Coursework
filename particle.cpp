@@ -44,7 +44,6 @@ void Particle::updatePosition(double dt) {
     
 }
 
-
 void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
     for (int i = 0; i < 3; i++) {
         v[i] += dt/mass * F[i];
@@ -65,10 +64,4 @@ void Particle::scaleTemp(double lambda) {
 double Particle::particleKE() {
     double speed2 = v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
     return 0.5 * mass * speed2;
-}
-
-void Particle::set_F(double F_new[3]) {
-    for (int m = 0; m < 3; m++) {
-        F[m] = F_new[m];
-    }
 }

@@ -14,10 +14,8 @@ class Box {
         const double Lx, Ly, Lz;   // box dimensions
         vector<Particle> particles;  // particles stored in a vector
         int N = 0;
-        void calculateF_i(int i, bool ic_random);  // Function to calculate F_i
 
     public:
-
         Box(const double x_length, const double y_length, const double z_length);  // Constructor to intitialise box
         ~Box() = default;  // Default destructor
         

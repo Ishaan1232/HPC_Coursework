@@ -25,53 +25,6 @@ bool Box::addParticle(Particle& p) {
     return true;
 }
 
-
-void Box::calculateF_i(int i, bool ic_random) {
-    double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2;
-    double diff[3];
-    double F_i[3] = {0.0, 0.0, 0.0};
-    Particle& p_i = particles[i];
-    for (int j = 0; j < N; j++) {
-        if (i != j) {
-            Particle& p_j = particles[j];
-            if (p_i.type == p_j.type) {
-                if (p_i.type == 0) {
-                    eps = 3.0; 
-                    sig = 1.0;
-                } else {
-                    eps = 60.0;
-                    sig = 3.0;
-                }
-            } else {
-                eps = 15.0;
-                sig = 2.0;
-            }
-
-            for (int m = 0; m < 3; m++) {
-                diff[m] = p_i.r[m] - p_j.r[m];
-            }
-
-            r_ij2 = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
-
-            if (ic_random) {
-                double cutoff = 2.5 * sig;
-                if (r_ij2 >= cutoff * cutoff) {
-                    continue;
-                }
-            }
-
-            inv_rij2 = 1.0/(r_ij2);
-            sig_rij = (sig*sig*sig*sig*sig*sig) * inv_rij2*inv_rij2*inv_rij2;  // (sigma/r)^6 (avoids pow)
-            dphi_dx = -24 * eps * sig_rij * (2 * sig_rij  - 1) * inv_rij2;
-
-            for (int m = 0; m < 3; m++) {
-                F_i[m] -= dphi_dx * diff[m];
-            }
-        }
-    }
-    p_i.set_F(F_i);
-}
-
 double Box::systemKE() {
     double E = 0.0;
     for (int i = 0; i < N; i++) {
@@ -117,13 +70,53 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         if (fmod(t, 0.1) < dt) {
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;
         }     
-        
+
         for (int i = 0; i < N; i++) {
-            Particle& p = particles[i];
-            calculateF_i(i, ic_random);                                   // force
-            p.updateVelocity(dt, Lx, Ly, Lz);
+            double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2;
+            double diff[3];
+
+            Particle& p_i = particles[i];
+            for (int j = i + 1; j < N; j++) { // Avoid double calculation
+                Particle& p_j = particles[j];
+
+                // Determine epsilon and sigma based on particle types
+                if (p_i.type == p_j.type) {
+                    if (p_i.type == 0) {
+                        eps = 3.0; 
+                        sig = 1.0;
+                    } else {
+                        eps = 60.0;
+                        sig = 3.0;
+                    }
+                } else {
+                    eps = 15.0;
+                    sig = 2.0;
+                }
+
+                // Compute squared distance between particles
+                for (int m = 0; m < 3; m++) {
+                    diff[m] = p_i.r[m] - p_j.r[m];
+                }
+
+                r_ij2 = diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2];
+                inv_rij2 = 1.0 / r_ij2;
+                sig_rij = (sig * sig * sig * sig * sig * sig) * inv_rij2 * inv_rij2 * inv_rij2;
+                dphi_dx = -24 * eps * sig_rij * (2 * sig_rij - 1) * inv_rij2;
+
+                // Apply forces to both particles (equal and opposite)
+                for (int m = 0; m < 3; m++) {
+                    double force_component = dphi_dx * diff[m];
+                    p_i.F[m] -= force_component;
+                    p_j.F[m] += force_component; // Newton's Third Law
+                }
+            }
+
+            p_i.updateVelocity(dt, Lx, Ly, Lz);
             if (temp != -1) {
-                p.scaleTemp(lambda);
+                p_i.scaleTemp(lambda);
+            }
+            for (int m = 0; m < 3; m++) {
+                p_i.F[m] = 0.0;
             }    
         } 
     }
