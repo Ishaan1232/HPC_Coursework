@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -g -O2 -ftree-vectorize
-HDRS = box.h particle.h
-OBJS = dynamics.o box.o particle.o
+HDRS = parse_cl.h box.h particle.h
+OBJS = dynamics.o parse_cl.o box.o particle.o
 TEST_OBJS = test.o box.o particle.o
 LDLIBS = -lblas -lboost_program_options -lboost_unit_test_framework
 BUILDS = md unittests
