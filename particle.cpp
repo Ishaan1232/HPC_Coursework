@@ -1,3 +1,11 @@
+/**
+ * @file particle.cpp
+ * @brief Implements the Particle class methods.
+ * 
+ * This file provides the implementation of the Particle class,
+ * handling updates to position, velocity, forces, and interactions.
+ */
+
 #include "particle.h"
 
 /** 

@@ -1,3 +1,11 @@
+/**
+ * @file box.h
+ * @brief Defines the Box class.
+ * 
+ * This header declares the Box class, which manages particles and their interactions
+ * within a 3D simulation environment.
+ */
+
 #ifndef BOX_H
 #define BOX_H// header guard to prevent being included in multiple files
 

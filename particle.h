@@ -1,3 +1,12 @@
+/**
+ * @file particle.h
+ * @brief Defines the Particle class for molecular dynamics simulation.
+ * 
+ * The Particle class represents an individual particle in the simulation.
+ * It includes properties such as position, velocity, force, and mass,
+ * as well as methods for updating its state.
+ */
+
 #ifndef PARTICLE_H
 #define PARTICLE_H// header guard to prevent being included in multiple files
 

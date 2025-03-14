@@ -1,3 +1,11 @@
+/**
+ * @file box.cpp
+ * @brief Implements the Box class methods.
+ * 
+ * This file provides the implementation of the Box class, including
+ * methods for particle management, force calculations, and simulation execution.
+ */
+
 #include "box.h"
 
 /**
