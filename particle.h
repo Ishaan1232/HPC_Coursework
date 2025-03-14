@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <cmath> 
-#include <tuple>
+#include <array>
 #include <fstream> 
 #include <iomanip>
 using namespace std;
@@ -23,15 +23,15 @@ using namespace std;
  */
 class Particle {
     private:
-        double* v;           ///< Velocity of the particle
+        array<double, 3> v;           ///< Velocity of the particle
         double mass;         ///< Mass of the particle
         /// @brief Checks and applies boundary conditions to ensure the particle stays within the domain.
-        void applyBC(double* pos, double* vel, double L);
+        void applyBC(double& pos, double& vel, double L);
 
     public:
-        double* r;           ///< Position of the particle
-        double* F;           ///< Force of the particle
         int type;            ///< Type of the particle
+        array<double, 3> r;           ///< Position of the particle
+        array<double, 3> F;           ///< Force of the particle
 
         /// @brief Default constructor
         Particle();
@@ -39,8 +39,8 @@ class Particle {
         Particle(double x_i, double y_i, double z_i, double vx_i, double vy_i, double vz_i, int type_i);
         /// @brief Copy constructor
         Particle(const Particle& p);    
-        /// @brief Deconstructor
-        ~Particle();
+        /// @brief Default deconstructor
+        ~Particle() = default;
         /// @brief Updates the particle's position
         void updatePosition(double dt);
         /// @brief Updates the particle's velocity
@@ -53,9 +53,9 @@ class Particle {
         /**
          * @brief Get the velocity of the particle
          * 
-         * @return Pointer to the velocity of the particle
+         * @return The array holding the particle's velocity
          */
-        const double* get_v() {return v;}
+        const array<double, 3>& get_v() {return v;}
 };
 
 #endif // PARTICLE_H

@@ -1,6 +1,6 @@
 /**
  * @file box.h
- * @brief Defines the Box class.
+ * @brief Defines the Box class
  * 
  * This header declares the Box class, which manages particles and their interactions
  * within a 3D simulation environment.
@@ -9,14 +9,13 @@
 #ifndef BOX_H
 #define BOX_H// header guard to prevent being included in multiple files
 
-#include <iostream>
 #include <cmath> 
 #include <vector>
 #include <fstream> 
 #include <iomanip>
 #include <string>
+#include <array>
 #include "particle.h"
-
 /**
  * @class Box
  * @brief Represents the simulation box 
@@ -25,7 +24,7 @@ class Box {
     private:
         const double Lx, Ly, Lz;   ///< Box dimensions in the x, y and z directions
         vector<Particle> particles;  ///< Vector to hold particles
-        int N = 0;                  ///< Number of particles
+        int N;                  ///< Number of particles
 
     public:
         /// @brief Default constructor

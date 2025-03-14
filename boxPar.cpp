@@ -7,6 +7,7 @@
  */
 
 #include "box.h"
+#include <omp.h>
 
 /**
  * Initializes the box with given dimensions
@@ -60,6 +61,7 @@ void Box::calculateF_i(Particle& p_i, int i) {
     double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2, force;
     array<double, 3> diff;
 
+    #pragma omp parallel for schedule(static) 
     for (int j = i + 1; j < N; j++) { // Avoid double calculation
         Particle& p_j = particles[j];
 
@@ -157,6 +159,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;              // Write KE to file
         }     
 
+        #pragma omp parallel for schedule(static)
         for (int i = 0; i < N; i++) {
             Particle& p_i = particles[i];
 

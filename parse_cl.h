@@ -9,8 +9,12 @@
 #ifndef PARSE_CL_H
 #define PARSE_CL_H
 
-#include <string>
+#include <iostream>
+#include <vector>
+using namespace std;
+
 #include <boost/program_options.hpp>
+namespace cl = boost::program_options;
 
 /**
  * @struct SimulationParameters 
