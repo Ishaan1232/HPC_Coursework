@@ -60,11 +60,10 @@ bool Box::addParticle(Particle& p) {
 void Box::calculateF_i(Particle& p_i, int i) {
     double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2, force;
     array<double, 3> diff;
-
-    #pragma omp parallel for schedule(static) 
+        
+//    #pragma omp parallel for schedule(static) 
     for (int j = i + 1; j < N; j++) { // Avoid double calculation
         Particle& p_j = particles[j];
-
         // Determine epsilon and sigma based on particle types
         if (p_i.type == p_j.type) {         // Find the parameters based on the two particles
             if (p_i.type == 0) {
@@ -78,7 +77,7 @@ void Box::calculateF_i(Particle& p_i, int i) {
             eps = 15.0;
             sig = 2.0;
         }
-
+        
         for (int m = 0; m < 3; m++) {
             diff[m] = p_i.r[m] - p_j.r[m];      // Calculate distance between the particles in the x, y and z direction
         }
@@ -104,6 +103,7 @@ void Box::calculateF_i(Particle& p_i, int i) {
  */
 double Box::systemKE() {
     double E = 0.0;
+    // #pragma omp parallel for reduction(+:E)
     for (int i = 0; i < N; i++) {
         E += particles[i].particleKE();
     }
@@ -127,18 +127,18 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
-    double E = 0.0, lambda;
+    double E = 0.0, lambda = 0.0;
     if (temp != -1) {                                                    // Check if temperature shoudl be scaled
         E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
         for (int i = 0; i < N; i++) {
             particles[i].scaleTemp(lambda);
         }
     }
 
     for (double t = 0; t < T + dt; t += dt) {
-        for (int i = 0; i < N; i++) {
-            if (!ic_random) {
+        if (!ic_random) {
+            for (int i = 0; i < N; i++) {
                 if (fmod(t, 0.1) < dt) {
                     particleData << setw(7) << round(t * 10) / 10
                                 << setw(7) << i + 1 
@@ -149,12 +149,22 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
                                 << setw(15) << particles[i].get_v()[1]
                                 << setw(15) << particles[i].get_v()[2] << endl;             // Write particles trajectories row by row
                 }
-            }
+            }                                            
+        }
+        
+//        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < N; i++) {
             particles[i].updatePosition(dt);                                                // Update particle's position first
         }
-
+        
+//        #pragma omp barrier
+//        #pragma omp single
+        
         E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
+        if (temp != -1) {
+            lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);
+        }
+        
         if (fmod(t, 0.1) < dt) {            
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;              // Write KE to file
         }     
@@ -164,12 +174,20 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             Particle& p_i = particles[i];
 
             calculateF_i(p_i, i);                                     // Calculate force on particle p_i
-            
+        }
+        
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < N; i++) {
+            Particle& p_i = particles[i];
             p_i.updateVelocity(dt, Lx, Ly, Lz);                       // Update p_i's velocity
             if (temp != -1) {
                 p_i.scaleTemp(lambda);                                // Scale velocities if required         
             }
-            
+        }
+        
+        
+        for (int i = 0; i < N; i++) {
+            Particle& p_i = particles[i];
             for (int m = 0; m < 3; m++) {
                 p_i.F[m] = 0.0;                                       // Reset p_i's force to [0,0,0]
             }    

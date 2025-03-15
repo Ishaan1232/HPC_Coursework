@@ -1,0 +1,240 @@
+Running mdpar with 1 threads
+
+real	0m30.491s
+user	0m30.251s
+sys	0m0.176s
+Running mdpar with 2 threads
+
+real	0m24.007s
+user	0m33.805s
+sys	0m0.172s
+Running mdpar with 3 threads
+
+real	0m18.771s
+user	0m37.069s
+sys	0m0.244s
+Running mdpar with 4 threads
+
+real	0m15.603s
+user	0m40.366s
+sys	0m0.189s
+Running mdpar with 5 threads
+
+real	0m13.522s
+user	0m43.603s
+sys	0m0.212s
+Running mdpar with 6 threads
+
+real	0m11.788s
+user	0m45.758s
+sys	0m0.237s
+Running mdpar with 7 threads
+
+real	0m10.597s
+user	0m48.418s
+sys	0m0.240s
+Running mdpar with 8 threads
+
+real	0m9.724s
+user	0m51.395s
+sys	0m0.225s
+Running mdpar with 9 threads
+
+real	0m8.970s
+user	0m53.904s
+sys	0m0.220s
+Running mdpar with 10 threads
+
+real	0m8.280s
+user	0m56.427s
+sys	0m0.241s
+Running mdpar with 11 threads
+
+real	0m7.808s
+user	0m59.438s
+sys	0m0.269s
+Running mdpar with 12 threads
+
+real	0m7.490s
+user	1m2.356s
+sys	0m0.320s
+Running mdpar with 13 threads
+
+real	0m7.113s
+user	1m5.279s
+sys	0m0.240s
+Running mdpar with 14 threads
+
+real	0m6.769s
+user	1m7.806s
+sys	0m0.261s
+Running mdpar with 15 threads
+
+real	0m6.585s
+user	1m11.309s
+sys	0m0.359s
+Running mdpar with 16 threads
+
+real	0m6.499s
+user	1m16.132s
+sys	0m0.241s
+Running mdpar with 17 threads
+
+real	0m6.238s
+user	1m18.393s
+sys	0m0.312s
+Running mdpar with 18 threads
+
+real	0m6.125s
+user	1m22.305s
+sys	0m0.204s
+Running mdpar with 19 threads
+
+real	0m5.995s
+user	1m25.513s
+sys	0m0.284s
+Running mdpar with 20 threads
+
+real	0m5.870s
+user	1m28.925s
+sys	0m0.256s
+Running mdpar with 21 threads
+
+real	0m5.748s
+user	1m32.212s
+sys	0m0.243s
+Running mdpar with 22 threads
+
+real	0m5.622s
+user	1m35.397s
+sys	0m0.273s
+Running mdpar with 23 threads
+
+real	0m5.516s
+user	1m38.882s
+sys	0m0.288s
+Running mdpar with 24 threads
+
+real	0m5.355s
+user	1m41.780s
+sys	0m0.244s
+Running mdpar with 25 threads
+
+real	0m5.412s
+user	1m45.531s
+sys	0m0.340s
+Running mdpar with 26 threads
+
+real	0m5.433s
+user	1m48.860s
+sys	0m0.291s
+Running mdpar with 27 threads
+
+real	0m5.379s
+user	1m51.172s
+sys	0m0.187s
+Running mdpar with 28 threads
+
+real	0m5.340s
+user	1m53.749s
+sys	0m0.312s
+Running mdpar with 29 threads
+
+real	0m5.274s
+user	1m56.031s
+sys	0m0.331s
+Running mdpar with 30 threads
+
+real	0m5.214s
+user	1m58.271s
+sys	0m0.244s
+Running mdpar with 31 threads
+
+real	0m5.070s
+user	1m59.482s
+sys	0m0.208s
+Running mdpar with 32 threads
+
+real	0m5.028s
+user	2m1.796s
+sys	0m0.256s
+Running mdpar with 33 threads
+
+real	0m4.921s
+user	2m3.276s
+sys	0m0.260s
+Running mdpar with 34 threads
+
+real	0m4.856s
+user	2m5.284s
+sys	0m0.341s
+Running mdpar with 35 threads
+
+real	0m4.770s
+user	2m6.502s
+sys	0m0.459s
+Running mdpar with 36 threads
+
+real	0m4.668s
+user	2m7.741s
+sys	0m0.465s
+Running mdpar with 37 threads
+
+real	0m4.589s
+user	2m9.164s
+sys	0m0.245s
+Running mdpar with 38 threads
+
+real	0m4.493s
+user	2m10.337s
+sys	0m0.180s
+Running mdpar with 39 threads
+
+real	0m4.432s
+user	2m11.364s
+sys	0m0.352s
+Running mdpar with 40 threads
+
+real	0m4.329s
+user	2m12.278s
+sys	0m0.208s
+Running mdpar with 41 threads
+
+real	0m4.246s
+user	2m13.055s
+sys	0m0.316s
+Running mdpar with 42 threads
+
+real	0m4.178s
+user	2m13.788s
+sys	0m0.280s
+Running mdpar with 43 threads
+
+real	0m4.088s
+user	2m14.137s
+sys	0m0.388s
+Running mdpar with 44 threads
+
+real	0m4.000s
+user	2m14.366s
+sys	0m0.313s
+Running mdpar with 45 threads
+
+real	0m3.913s
+user	2m14.725s
+sys	0m0.452s
+Running mdpar with 46 threads
+
+real	0m3.835s
+user	2m14.799s
+sys	0m0.343s
+Running mdpar with 47 threads
+
+real	0m3.763s
+user	2m14.744s
+sys	0m0.459s
+Running mdpar with 48 threads
+
+real	0m3.503s
+user	2m10.646s
+sys	0m0.410s

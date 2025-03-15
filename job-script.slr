@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=ib_mdpar
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=48
+#SBATCH --mem=128000MB
+#SBATCH --time=06:00:00
+#SBATCH --partition=short
+
+for THREADS in {1..48};
+do
+    export OMP_NUM_THREADS=$THREADS
+    export OMP_PLACES=cores
+    export OMP_PROC_BIND=spread
+
+    echo "Running mdpar with $THREADS threads"
+
+    time ./mdpar --T 0.3 --ic-random --Lx 50 --Ly 50 --Lz 50 --N 10000 --temp 20
+done

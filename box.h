@@ -41,6 +41,15 @@ class Box {
         double systemKE();
         /// @brief Run the simulation once all particles are added successfully
         void runSimulation(double dt, double T, double temp, bool ic_random, string ic); 
+
+        /**
+         * @brief Getter for particles vector 
+         * 
+         * Used for unittests
+         * 
+         * @return Returns a pointer to the particles vector.
+         * */
+        const vector<Particle>& get_particles() const { return particles; }  // Read-only version
 };
 
 #endif // BOX_H

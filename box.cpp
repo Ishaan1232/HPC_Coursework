@@ -125,10 +125,10 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
-    double E = 0.0, lambda;
+    double E, lambda;
     if (temp != -1) {                                                    // Check if temperature shoudl be scaled
         E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
         for (int i = 0; i < N; i++) {
             particles[i].scaleTemp(lambda);
         }
@@ -152,7 +152,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         }
 
         E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467)/E);
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);
         if (fmod(t, 0.1) < dt) {            
             KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;              // Write KE to file
         }     
