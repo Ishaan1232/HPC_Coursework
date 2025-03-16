@@ -103,7 +103,7 @@ void Box::calculateF_i(Particle& p_i, int i) {
  */
 double Box::systemKE() {
     double E = 0.0;
-    // #pragma omp parallel for reduction(+:E)
+    #pragma omp parallel for reduction(+:E)
     for (int i = 0; i < N; i++) {
         E += particles[i].particleKE();
     }
@@ -127,71 +127,82 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
-    double E = 0.0, lambda = 0.0;
-    if (temp != -1) {                                                    // Check if temperature shoudl be scaled
-        E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+    double E, lambda;
+
+    if (temp != -1) {       // Check if temperature shoudl be scaled
+        E = systemKE();                                                 
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * double(N))/E);              // Constant to scale velocities before simulation runs to get initial KE correct
         for (int i = 0; i < N; i++) {
             particles[i].scaleTemp(lambda);
         }
     }
 
-    for (double t = 0; t < T + dt; t += dt) {
-        if (!ic_random) {
-            for (int i = 0; i < N; i++) {
-                if (fmod(t, 0.1) < dt) {
-                    particleData << setw(7) << round(t * 10) / 10
-                                << setw(7) << i + 1 
-                                << setw(15) << particles[i].r[0]
-                                << setw(15) << particles[i].r[1]
-                                << setw(15) << particles[i].r[2]
-                                << setw(15) << particles[i].get_v()[0]
-                                << setw(15) << particles[i].get_v()[1]
-                                << setw(15) << particles[i].get_v()[2] << endl;             // Write particles trajectories row by row
-                }
-            }                                            
+    E = systemKE();
+
+    if (!ic_random) {
+        for (int i = 0; i < N; i++)  {
+            particleData << " " << 0.0
+                        << " " << i + 1 
+                        << " " << particles[i].r[0]
+                        << " " << particles[i].r[1]
+                        << " " << particles[i].r[2]
+                        << " " << particles[i].get_v()[0]
+                        << " " << particles[i].get_v()[1]
+                        << " " << particles[i].get_v()[2] << endl;             // Write initial particles trajectories row by row
         }
-        
-//        #pragma omp parallel for schedule(static)
+    }
+
+    KEData  << " " << 0.0 << " " << E << endl;              // Write initial KE to file
+
+    for (double t = dt; t < T + dt; t += dt) {
+        #pragma omp parallel for schedule(static)
         for (int i = 0; i < N; i++) {
             particles[i].updatePosition(dt);                                                // Update particle's position first
         }
         
-//        #pragma omp barrier
-//        #pragma omp single
-        
-        E = systemKE();
-        if (temp != -1) {
-            lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < N; i++) {
+            calculateF_i(particles[i], i);                                     // Calculate force on particle p_i
         }
         
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < N; i++) {
+            particles[i].updateVelocity(dt, Lx, Ly, Lz);                       // Update p_i's velocity
+        }
+        
+        #pragma omp parallel for schedule(static)
+        for (int i = 0; i < N; i++) {
+            particles[i].F = {0.0, 0.0, 0.0};                               // Reset force to zero 
+        } 
+
+        if (temp != -1) {
+            E = systemKE();                                                 
+            lambda = sqrt((temp * 1.5 * 0.8314459920816467 * double(N))/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+            for (int i = 0; i < N; i++) {
+                particles[i].scaleTemp(lambda);
+            }       
+        }
+
+        E = systemKE();
+
         if (fmod(t, 0.1) < dt) {            
-            KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;              // Write KE to file
+            KEData  << " " << round(t * 10) / 10 << " " << E << endl;               // Write KE to file
         }     
 
-        #pragma omp parallel for schedule(static)
-        for (int i = 0; i < N; i++) {
-            Particle& p_i = particles[i];
-
-            calculateF_i(p_i, i);                                     // Calculate force on particle p_i
-        }
-        
-        #pragma omp parallel for schedule(static)
-        for (int i = 0; i < N; i++) {
-            Particle& p_i = particles[i];
-            p_i.updateVelocity(dt, Lx, Ly, Lz);                       // Update p_i's velocity
-            if (temp != -1) {
-                p_i.scaleTemp(lambda);                                // Scale velocities if required         
+        if (!ic_random) {
+            if (fmod(t, 0.1) < dt) {
+                for (int i = 0; i < N; i++)  {
+                    particleData << " " << round(t * 10) / 10
+                                << " " << i + 1 
+                                << " " << particles[i].r[0]
+                                << " " << particles[i].r[1]
+                                << " " << particles[i].r[2]
+                                << " " << particles[i].get_v()[0]
+                                << " " << particles[i].get_v()[1]
+                                << " " << particles[i].get_v()[2] << endl;             // Write initial particles trajectories row by row
+                }
             }
         }
-        
-        
-        for (int i = 0; i < N; i++) {
-            Particle& p_i = particles[i];
-            for (int m = 0; m < 3; m++) {
-                p_i.F[m] = 0.0;                                       // Reset p_i's force to [0,0,0]
-            }    
-        } 
     }
 
     particleData.close();

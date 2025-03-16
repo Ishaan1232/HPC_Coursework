@@ -126,36 +126,36 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
     double E, lambda;
-    if (temp != -1) {                                                    // Check if temperature shoudl be scaled
-        E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+
+    if (temp != -1) {       // Check if temperature shoudl be scaled
+        E = systemKE();                                                 
+        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * double(N))/E);              // Constant to scale velocities before simulation runs to get initial KE correct
         for (int i = 0; i < N; i++) {
             particles[i].scaleTemp(lambda);
         }
     }
 
-    for (double t = 0; t < T + dt; t += dt) {
+    E = systemKE();
+
+    if (!ic_random) {
+        for (int i = 0; i < N; i++)  {
+            particleData << " " << 0.0
+                        << " " << i + 1 
+                        << " " << particles[i].r[0]
+                        << " " << particles[i].r[1]
+                        << " " << particles[i].r[2]
+                        << " " << particles[i].get_v()[0]
+                        << " " << particles[i].get_v()[1]
+                        << " " << particles[i].get_v()[2] << endl;             // Write initial particles trajectories row by row
+        }
+    }
+
+    KEData  << " " << 0.0 << " " << E << endl;              // Write initial KE to file
+
+    for (double t = dt; t < T + dt; t += dt) {          // run for t = dt to T
         for (int i = 0; i < N; i++) {
-            if (!ic_random) {
-                if (fmod(t, 0.1) < dt) {
-                    particleData << setw(7) << round(t * 10) / 10
-                                << setw(7) << i + 1 
-                                << setw(15) << particles[i].r[0]
-                                << setw(15) << particles[i].r[1]
-                                << setw(15) << particles[i].r[2]
-                                << setw(15) << particles[i].get_v()[0]
-                                << setw(15) << particles[i].get_v()[1]
-                                << setw(15) << particles[i].get_v()[2] << endl;             // Write particles trajectories row by row
-                }
-            }
             particles[i].updatePosition(dt);                                                // Update particle's position first
         }
-
-        E = systemKE();
-        lambda = sqrt((temp * 1.5 * 0.8314459920816467 * N)/E);
-        if (fmod(t, 0.1) < dt) {            
-            KEData  << setw(7) << round(t * 10) / 10 << setw(15) << E << endl;              // Write KE to file
-        }     
 
         for (int i = 0; i < N; i++) {
             Particle& p_i = particles[i];
@@ -163,14 +163,39 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             calculateF_i(p_i, i);                                     // Calculate force on particle p_i
             
             p_i.updateVelocity(dt, Lx, Ly, Lz);                       // Update p_i's velocity
-            if (temp != -1) {
-                p_i.scaleTemp(lambda);                                // Scale velocities if required         
-            }
             
-            for (int m = 0; m < 3; m++) {
-                p_i.F[m] = 0.0;                                       // Reset p_i's force to [0,0,0]
-            }    
+            p_i.F = {0.0, 0.0, 0.0};                                       // Reset p_i's force to [0,0,0]
+             
         } 
+
+        if (temp != -1) {
+            E = systemKE();                                                 
+            lambda = sqrt((temp * 1.5 * 0.8314459920816467 * double(N))/E);              // Constant to scale velocities before simulation runs to get initial KE correct
+            for (int i = 0; i < N; i++) {
+                particles[i].scaleTemp(lambda);
+            }       
+        }
+
+        E = systemKE();
+
+        if (fmod(t, 0.1) < dt) {            
+            KEData  << " " << round(t * 10) / 10 << " " << E << endl;               // Write KE to file
+        }     
+
+        if (!ic_random) {
+            if (fmod(t, 0.1) < dt) {
+                for (int i = 0; i < N; i++)  {
+                    particleData << " " << round(t * 10) / 10
+                                << " " << i + 1 
+                                << " " << particles[i].r[0]
+                                << " " << particles[i].r[1]
+                                << " " << particles[i].r[2]
+                                << " " << particles[i].get_v()[0]
+                                << " " << particles[i].get_v()[1]
+                                << " " << particles[i].get_v()[2] << endl;             // Write initial particles trajectories row by row
+                }
+            }
+        }
     }
 
     particleData.close();

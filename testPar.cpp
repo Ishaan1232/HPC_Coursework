@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE(Test1) {
     box.addParticle(p);
 
     double dt = 0.001;
-    double T = 10 - dt;
+    double T = 10;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-one";
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(Test2) {
     box.addParticle(p);
 
     double dt = 0.001;
-    double T = 20 - dt;
+    double T = 20;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-one-vel";
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(Test3) {
     box.addParticle(p2);
 
     double dt = 0.001;
-    double T = 50 - dt;
+    double T = 50;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-two";
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(Test4) {
     box.addParticle(p2);
 
     double dt = 0.001;
-    double T = 50 - dt;
+    double T = 50;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-two-pass1";
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(Test5) {
     box.addParticle(p2);
 
     double dt = 0.001;
-    double T = 50 - dt;
+    double T = 50;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-two-pass2";
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(Test6) {
     box.addParticle(p2);
 
     double dt = 0.001;
-    double T = 50 - dt;
+    double T = 50;
     double temp = -1;
     bool ic_random = false;
     string ic = "ic-two-pass3";
