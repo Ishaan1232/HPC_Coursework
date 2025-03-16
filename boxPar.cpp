@@ -88,6 +88,7 @@ void Box::calculateF_i(Particle& p_i, int i) {
         dphi_dx = -24 * eps * sig_rij * (2 * sig_rij - 1) * inv_rij2;                       // Calculate the constant in the force equation
 
         // Apply forces to both particles (equal and opposite)
+        #pragma omp simd
         for (int m = 0; m < 3; m++) {
             force = -dphi_dx * diff[m];             // Calculate force exerted on p_i by p_j
             p_i.F[m] += force;                        
@@ -159,7 +160,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         for (int i = 0; i < N; i++) {
             particles[i].updatePosition(dt);                                                // Update particle's position first
         }
-        
+
         #pragma omp parallel for schedule(static)
         for (int i = 0; i < N; i++) {
             calculateF_i(particles[i], i);                                     // Calculate force on particle p_i

@@ -64,6 +64,7 @@ void Particle::applyBC(double& pos, double& vel, double L) {
  * @param dt Time step.
  */
 void Particle::updatePosition(double dt) {
+    #pragma omp simd
     for (int i = 0; i < 3; i++) {
         r[i] += dt * v[i];
     }
@@ -80,6 +81,7 @@ void Particle::updatePosition(double dt) {
  * @param Lz Box dimension in the z-direction.
  */
 void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
+    #pragma omp simd
     for (int i = 0; i < 3; i++) {
         v[i] += dt/mass * F[i];
     }
@@ -97,6 +99,7 @@ void Particle::updateVelocity(double dt, double Lx, double Ly, double Lz) {
  * @param lambda Scaling factor for velocity adjustment.
  */
 void Particle::scaleTemp(double lambda) {
+    #pragma omp simd
     for (int i = 0; i < 3; i++) {
         v[i] *= lambda;
     }
