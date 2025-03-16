@@ -61,7 +61,6 @@ void Box::calculateF_i(Particle& p_i, int i) {
     double eps, sig, r_ij2, dphi_dx, sig_rij, inv_rij2, force;
     array<double, 3> diff;
         
-//    #pragma omp parallel for schedule(static) 
     for (int j = i + 1; j < N; j++) { // Avoid double calculation
         Particle& p_j = particles[j];
         // Determine epsilon and sigma based on particle types
@@ -128,6 +127,8 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
+    int chunk_size = N/omp_get_max_threads();
+
     double E, lambda;
 
     if (temp != -1) {       // Check if temperature shoudl be scaled
@@ -161,7 +162,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             particles[i].updatePosition(dt);                                                // Update particle's position first
         }
 
-        #pragma omp parallel for schedule(static)
+        #pragma omp parallel for schedule(guided, chunk_size)
         for (int i = 0; i < N; i++) {
             calculateF_i(particles[i], i);                                     // Calculate force on particle p_i
         }

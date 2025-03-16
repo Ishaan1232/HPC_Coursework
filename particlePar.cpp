@@ -7,6 +7,7 @@
  */
 
 #include "particle.h"
+#include <omp.h>
 
 /** 
  * Initializes the particle with given position, velocity, and type.
