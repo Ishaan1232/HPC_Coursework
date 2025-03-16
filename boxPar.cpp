@@ -127,7 +127,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream particleData(particle_file, ios::out | ios::trunc);
     ofstream KEData(KE_file, ios::out | ios::trunc);                     // Open files for print only.
 
-    int chunk_size = N/omp_get_max_threads();
+    int chunk_size = N/(omp_get_max_threads());
 
     double E, lambda;
 
