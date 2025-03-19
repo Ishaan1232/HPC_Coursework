@@ -4,7 +4,7 @@ NVCC = nvcc
 
 # Compilation flags
 CXXFLAGS = -std=c++11 -Wall -O2 -ftree-vectorize
-NVCCFLAGS = -arch=sm_60 -std=c++11 -O2
+NVCCFLAGS = -arch=sm_80 -std=c++11 -O2
 
 # Header files
 HDRS = parse_cl.h box.h particle.h

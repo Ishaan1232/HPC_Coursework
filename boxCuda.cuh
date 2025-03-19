@@ -40,7 +40,7 @@ class Box {
         /// @brief Adds a particle to the box and ensures there is a minimum separation.
         bool addParticle(Particle& p); 
         /// @brief Allocate memory for GPU array and populates host array
-        void Box::createArrays(vector<Particle>& particles);
+        void createArrays(vector<Particle>& particles);
         /// @brief Run the simulation once all particles are added successfully
         void runSimulation(double dt, double T, double temp, bool ic_random, string ic); 
 };

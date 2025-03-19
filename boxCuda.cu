@@ -7,7 +7,6 @@
  */
 
 #include "boxCuda.cuh"
-#include <cuda_runtime.h>
 
 /**
  * Initializes the box with given dimensions
@@ -73,7 +72,7 @@ void calculateF_i(double* gpu_particles, int N) {
         double Fx = 0.0, Fy = 0.0, Fz = 0.0;
         double eps, sig, dx, dy, dz, r_ij2, dphi_dx, sig_rij, inv_rij2;
 
-        for (int j = i + 1; j < N; j++) {
+        for (int j = 0; j < N; j++) {
             if (i != j) {       // skip identical particle index
 
                 if (gpu_particles[10 * i + 9] == gpu_particles[10 * j + 9]) {         // Find the parameters based on the two particles
@@ -127,24 +126,41 @@ void updatePositions(double *gpu_particles, double dt, int N) {
 }
 
 /**
- * @brief CUDA Kernel to update velocities
+ * @brief CUDA Kernel to update velocities and apply boundary conditions
+ * 
+ * Uses the equation \f$ v = v + (F/m) \cdot dt \f$.
+ * Also applies boundary conditions to prevent particles from exiting the simulation domain.
  * 
  * @param gpu_particles gpu array 
  * @param dt time step
  * @param N number of particles
+ * @param Lx Box dimension in the x-direction.
+ * @param Ly Box dimension in the y-direction.
+ * @param Lz Box dimension in the z-direction.
  */
 __global__ 
-void updateVelocities(double *gpu_particles, double dt, int N) {
+void updateVelocities(double *gpu_particles, double dt, int N, double Lx, double Ly, double Lz) {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
-    if (i >= N) return;
+    if (i < N) {
+        double mass = gpu_particles[10 * i + 9];
+        double L[3] = {Lx, Ly, Lz};
 
-    double mass = gpu_particles[10 * i + 9];
-    gpu_particles[10 * i + 3] += dt * gpu_particles[10 * i + 6] / mass;
-    gpu_particles[10 * i + 4] += dt * gpu_particles[10 * i + 7] / mass;
-    gpu_particles[10 * i + 5] += dt * gpu_particles[10 * i + 8] / mass;
+        for (int dim = 0; dim < 3; dim++) {
+            gpu_particles[10 * i + dim + 3] += dt * gpu_particles[10 * i + dim + 6] / mass;  // v = v + dt * F/m
+            if (gpu_particles[10 * i + dim] < 0) {
+                gpu_particles[10 * i + dim] = -gpu_particles[10 * i + dim]; 
+                gpu_particles[10 * i + 3 + dim]  = abs(gpu_particles[10 * i + 3 + dim] );
+            }
+            if (gpu_particles[10 * i + dim] > L[dim]) {
+                gpu_particles[10 * i + dim] = 2 * L[dim] - gpu_particles[10 * i + dim];
+                gpu_particles[10 * i + 3 + dim] = -abs(gpu_particles[10 * i + 3 + dim]);
+            }
+        }
+    }
 }
 
-__global__ void computeKineticEnergy(double* gpu_particles, double* gpu_KE, int N) {
+__global__ 
+void computeKineticEnergy(double* gpu_particles, double* gpu_KE, int N) {
     __shared__ double shared_KE[256];  // Shared memory for parallel reduction
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     int tid = threadIdx.x;
@@ -177,7 +193,8 @@ __global__ void computeKineticEnergy(double* gpu_particles, double* gpu_KE, int 
 }
 
 
-__global__ void scaleVelocities(double* gpu_particles, double lambda, int N) {
+__global__ 
+void scaleVelocities(double* gpu_particles, double lambda, int N) {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i < N) {
         gpu_particles[10 * i + 3] *= lambda;
@@ -254,6 +271,20 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
 
     KEData << " " << 0.0 << " " << host_KE << endl;
 
+    if (!ic_random) {
+        cudaMemcpy(host_particles, gpu_particles, 10 * N * sizeof(double), cudaMemcpyDeviceToHost);
+        for (int i = 0; i < N; i++) {
+            particleData << " " << 0.0
+                        << " " << i + 1
+                        << " " << host_particles[10 * i]
+                        << " " << host_particles[10 * i + 1]
+                        << " " << host_particles[10 * i + 2]
+                        << " " << host_particles[10 * i + 3]
+                        << " " << host_particles[10 * i + 4]
+                        << " " << host_particles[10 * i + 5] << endl;
+        }
+    }
+
     for (double t = dt; t < T + dt; t += dt) {
         updatePositions<<<blocks, threads>>>(gpu_particles, dt, N);
         cudaDeviceSynchronize();
@@ -261,7 +292,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         calculateF_i<<<blocks, threads>>>(gpu_particles, N);
         cudaDeviceSynchronize();
 
-        updateVelocities<<<blocks, threads>>>(gpu_particles, dt, N);
+        updateVelocities<<<blocks, threads>>>(gpu_particles, dt, N, Lx, Ly, Lz);
         cudaDeviceSynchronize();
 
         // Compute KE
@@ -285,6 +316,22 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         // Write to files every 0.1s
         if (fmod(t, 0.1) < dt) {
             KEData << " " << round(t * 10) / 10 << " " << host_KE << endl;
+        }
+
+        if (!ic_random) {
+            if (fmod(t, 0.1) < dt) {
+                cudaMemcpy(host_particles, gpu_particles, 10 * N * sizeof(double), cudaMemcpyDeviceToHost);
+                for (int i = 0; i < N; i++) {
+                    particleData << " " << round(t * 10) / 10
+                                << " " << i + 1
+                                << " " << host_particles[10 * i]
+                                << " " << host_particles[10 * i + 1]
+                                << " " << host_particles[10 * i + 2]
+                                << " " << host_particles[10 * i + 3]
+                                << " " << host_particles[10 * i + 4]
+                                << " " << host_particles[10 * i + 5] << endl;
+                }
+            }
         }
     }
 
