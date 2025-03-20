@@ -159,36 +159,43 @@ void updateVelocities(double *gpu_particles, double dt, int N, double Lx, double
     }
 }
 
+/**
+ * @brief CUDA Kernel to calculate system kinetic energy
+ * 
+ * First, computes KE on each thread, then uses tree based reduction 
+ * on shared memory to compute the KE in each block. Atomic addition
+ * comutes total KE.
+ * 
+ * @param gpu_particles gpu array 
+ * @param gpu_KE gpu double holding system KE
+ * @param N number of particles
+ */
 __global__ 
 void computeKineticEnergy(double* gpu_particles, double* gpu_KE, int N) {
     __shared__ double shared_KE[256];  // Shared memory for parallel reduction
     int i = blockIdx.x * blockDim.x + threadIdx.x;
-    int tid = threadIdx.x;
+    int thread = threadIdx.x;
 
-    double KE = 0.0;
     if (i < N) {
         double vx = gpu_particles[10 * i + 3];
         double vy = gpu_particles[10 * i + 4];
         double vz = gpu_particles[10 * i + 5];
         double mass = gpu_particles[10 * i + 9];
-
-        KE = 0.5 * mass * (vx * vx + vy * vy + vz * vz);
-    }
     
-    shared_KE[tid] = KE;
-    __syncthreads();
+        shared_KE[thread] = 0.5 * mass * (vx * vx + vy * vy + vz * vz); // compute thread kinetic energy;
+        __syncthreads();        // Ensure block finishes computing individiual KE
 
-    // Parallel reduction in shared memory
-    for (int s = blockDim.x / 2; s > 0; s >>= 1) {
-        if (tid < s) {
-            shared_KE[tid] += shared_KE[tid + s];
+        for (int j = blockDim.x / 2; j > 0; j = j/2) {  // Tree based reduction on thread 0
+            if (thread < j) {
+                shared_KE[thread] += shared_KE[thread + j]; // addition in pairs
+            }
+            __syncthreads();
         }
-        __syncthreads();
-    }
 
-    // Write to global memory
-    if (tid == 0) {
-        atomicAdd(gpu_KE, shared_KE[0]);
+        // Write to global memory
+        if (thread == 0) {
+            atomicAdd(gpu_KE, shared_KE[0]);    // atomic addition for KE across blocks
+        }
     }
 }
 
@@ -222,7 +229,6 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
     ofstream KEData(KE_file, ios::out | ios::trunc);
 
     host_particles = new double [10 * N];  // 3 each for position, velocity, force and 1 for mass
-    cudaMalloc(&gpu_particles, 10 * N * sizeof(double));
 
     for (int i = 0; i < N; i++) {
         host_particles[10 * i]     = particles[i].r[0];
@@ -237,22 +243,22 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         host_particles[10 * i + 7] = particles[i].F[1];
         host_particles[10 * i + 8] = particles[i].F[2];     // Forces
         
-        host_particles[10 * i + 9] = (particles[i].type == 0) ? 1.0 : 10.0; // Mass
+        host_particles[10 * i + 9] = particles[i].get_mass(); // Mass
     }
 
-    // Copy particle data from host to gpu
-    cudaMemcpy(gpu_particles, host_particles, 10 * N * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMalloc(&gpu_particles, 10 * N * sizeof(double));    // Allocate memory for gpu array
+    cudaMemcpy(gpu_particles, host_particles, 10 * N * sizeof(double), cudaMemcpyHostToDevice);         // Copy particle data from host to gpu
 
     double* gpu_KE;
-    cudaMalloc(&gpu_KE, sizeof(double));
-    cudaMemset(gpu_KE, 0, sizeof(double));
+    cudaMalloc(&gpu_KE, sizeof(double));    // Allocate double for the kinetic energy
 
     int threads = 256;
-    int blocks = (N + threads - 1) / threads;
+    int blocks = (N + threads - 1) / threads;   // Calculate required number of blocks
 
     // Compute initial KE
-    computeKineticEnergy<<<blocks, threads>>>(gpu_particles, gpu_KE, N);
-    cudaDeviceSynchronize();
+    cudaMemset(gpu_KE, 0, sizeof(double));      // set gpu KE to 0 for atomic addition
+    computeKineticEnergy<<<blocks, threads>>>(gpu_particles, gpu_KE, N);        
+    cudaDeviceSynchronize();   
     
     double host_KE;
     cudaMemcpy(&host_KE, gpu_KE, sizeof(double), cudaMemcpyDeviceToHost);
@@ -263,6 +269,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
         scaleVelocities<<<blocks, threads>>>(gpu_particles, lambda, N);
         cudaDeviceSynchronize();
 
+        cudaMemset(gpu_KE, 0, sizeof(double));      // reset GPU KE to 0 for atomic addition
         computeKineticEnergy<<<blocks, threads>>>(gpu_particles, gpu_KE, N);
         cudaDeviceSynchronize();
 
@@ -307,6 +314,7 @@ void Box::runSimulation(double dt, double T, double temp, bool ic_random, string
             scaleVelocities<<<blocks, threads>>>(gpu_particles, lambda, N);
             cudaDeviceSynchronize();
 
+            cudaMemset(gpu_KE, 0, sizeof(double));
             computeKineticEnergy<<<blocks, threads>>>(gpu_particles, gpu_KE, N);
             cudaDeviceSynchronize();
 

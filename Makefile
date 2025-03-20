@@ -4,7 +4,7 @@ NVCC = nvcc
 
 # Compilation flags
 CXXFLAGS = -std=c++11 -Wall -O2 -ftree-vectorize
-NVCCFLAGS = -arch=sm_80 -std=c++11 -O2
+NVCCFLAGS = -arch=sm_80 -std=c++11 -O2 
 
 # Header files
 HDRS = parse_cl.h box.h particle.h
@@ -33,18 +33,18 @@ default: md
 %.o : %.cpp $(HDRS)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-# Compile CUDA files
-%.o : %.cu $(HDRS_CUDA)
-	$(NVCC) $(NVCCFLAGS) -o $@ -c $<
-
 # Build serial version
 md : $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 
 # Build parallel OpenMP version
-mdpar : CXX += -fopenmp
+mdpar : CXXFLAGS += -fopenmp
 mdpar : $(PAR_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
+
+# Compile CUDA files
+%.o : %.cu $(HDRS_CUDA)
+	$(NVCC) $(NVCCFLAGS) -o $@ -c $<
 
 # Build CUDA version
 mdcuda : $(CUDA_OBJS)
@@ -54,7 +54,7 @@ mdcuda : $(CUDA_OBJS)
 unittests: $(TEST_OBJS) 
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 
-unittestsPar : CXX += -fopenmp
+unittestsPar : CXXFLAGS += -fopenmp
 unittestsPar: $(TEST_PAR_OBJS) 
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 

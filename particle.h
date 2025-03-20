@@ -56,6 +56,13 @@ class Particle {
          * @return The array holding the particle's velocity
          */
         const array<double, 3>& get_v() {return v;}
+
+        /**
+         * @brief Get the mass of the particle
+         * 
+         * @return mass of the particle
+         */
+        double get_mass() {return mass;}
 };
 
 #endif // PARTICLE_H
