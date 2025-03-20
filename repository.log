@@ -1,0 +1,1396 @@
+commit 1ab9cf0fcbef41b0a99facc6224e35b840389519
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 20 19:05:07 2025 +0000
+
+    final plots
+
+M	KE_Data/Graphs/ic-one-vel.png
+M	KE_Data/Graphs/ic-one.png
+M	KE_Data/Graphs/ic-two-pass1.png
+M	KE_Data/Graphs/ic-two-pass2.png
+M	KE_Data/Graphs/ic-two-pass3.png
+M	KE_Data/Graphs/ic-two.png
+M	Particle_Data/Graphs/ic-one-vel.png
+M	Particle_Data/Graphs/ic-one.png
+M	Particle_Data/Graphs/ic-two-pass1.png
+M	Particle_Data/Graphs/ic-two-pass2.png
+M	Particle_Data/Graphs/ic-two-pass3.png
+M	Particle_Data/Graphs/ic-two.png
+A	cuda_plot.png
+M	cuda_results.txt
+M	plotting.mlx
+A	plotting_cuda.m
+
+commit 454c24d835e7f879e9df3da352688609e212f662
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 20 13:50:23 2025 +0000
+
+    Finished
+
+M	boxCuda.cu
+
+commit 6b8b39b257558e982ca4acb064136fcd18c73e47
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 20 13:38:29 2025 +0000
+
+    Tested CUDA implementation and completed documentation
+
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two-pass1.txt
+M	KE_Data/Data/ic-two.txt
+M	Makefile
+M	Particle_Data/Data/ic-two-pass1.txt
+M	Particle_Data/Data/ic-two.txt
+A	benchmark.sh
+M	boxCuda.cu
+A	cuda_results.txt
+M	particle.h
+
+commit 1851a8211756b86860603b568c4200408adbdbba
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 19 16:31:42 2025 +0000
+
+    Exteneded serial code to CUDA, but errors in final results
+
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two.txt
+M	Makefile
+M	Particle_Data/Data/ic-two.txt
+M	boxCuda.cu
+M	boxCuda.cuh
+
+commit 7ad671a4401c7856753949481988f2abfd290225
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 19 00:40:21 2025 +0000
+
+    Implemented CUDA, changed storage system
+
+M	KE_Data/Data/ic-random.txt
+M	Makefile
+M	boxCuda.cu
+M	boxCuda.cuh
+
+commit 4fbded429f488cd012b55bad61e2e1f05449a57a
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 18 18:56:42 2025 +0000
+
+    BEgginign CUDA implementation
+
+M	KE_Data/Data/ic-one-vel.txt
+M	KE_Data/Data/ic-one.txt
+M	KE_Data/Data/ic-two-pass1.txt
+M	KE_Data/Data/ic-two-pass2.txt
+M	KE_Data/Data/ic-two-pass3.txt
+M	Makefile
+M	Particle_Data/Data/ic-one-vel.txt
+M	Particle_Data/Data/ic-one.txt
+M	Particle_Data/Data/ic-two-pass1.txt
+M	Particle_Data/Data/ic-two-pass2.txt
+M	Particle_Data/Data/ic-two-pass3.txt
+A	boxCuda.cu
+A	boxCuda.cuh
+D	dynamicsPar.cpp
+D	parse_clPar.cpp
+
+commit 6adfbfe4f2f565b3ca158660bb68978a426e8436
+Merge: b9cc649 df6d800
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 20:14:40 2025 +0000
+
+    Merge branch 'test' of https://github.com/Ishaan1232/HPC_Coursework into test
+
+commit b9cc649d70f0da8a9ec74e116cfb741241eda100
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 20:14:37 2025 +0000
+
+    created plots for parallelisation
+
+A	parallel_efficiency.png
+A	parallel_plot.png
+A	plotting_parallel.m
+D	plotting_parallel.mlx
+
+commit df6d8001e9586192ef8ad75754cf59d306076e33
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 20:13:59 2025 +0000
+
+    Starting CUDA implementation
+
+M	KE_Data/Data/ic-random.txt
+M	boxPar.cpp
+
+commit 576daa6e422553324c1e5fa88a7b4c597c6aee8b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 14:02:51 2025 +0000
+
+    Finished cluster jobs
+
+M	Parallel1.out
+A	Parallel2.out
+M	boxPar.cpp
+M	job-script.slr
+D	mdpar_scaling_plot.png
+M	particlePar.cpp
+
+commit 20729f600474d5f139e08ad0e1418b089ffc7395
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 02:35:45 2025 +0000
+
+    plotting cluster output for time vs threads
+
+A	assignment.pdf
+A	mdpar_scaling_plot.png
+A	plotting_parallel.mlx
+
+commit c288718041261bb17cd1d9a48d3fca58cccd64d6
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 02:28:17 2025 +0000
+
+    cleaned before push
+
+D	boxPar.o
+D	dynamicsPar.o
+D	mdpar
+D	parse_clPar.o
+D	particlePar.o
+
+commit 15490b87566aacb9c09ef652333e36d98fe0d194
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 02:27:34 2025 +0000
+
+    Added final parallelism, submitted to cluster
+
+M	KE_Data/Data/ic-random.txt
+D	box.o
+M	boxPar.cpp
+M	boxPar.o
+D	dynamics.o
+M	job-script.slr
+D	md
+M	mdpar
+D	parse_cl.o
+D	particle.o
+M	particlePar.cpp
+
+commit 020c96e79f7834638d95355c7a47c45e825e7411
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 16 01:38:44 2025 +0000
+
+    ran batch job, big improvements with more cores, further parallelisation
+
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two.txt
+A	Parallel1.out
+M	Particle_Data/Data/ic-two.txt
+M	box.cpp
+M	box.o
+M	boxPar.cpp
+A	boxPar.o
+A	dynamicsPar.o
+M	job-script.slr
+M	md
+A	mdpar
+A	parse_clPar.o
+A	particlePar.o
+D	slurm-26707.out
+D	slurm-26710.out
+D	slurm-26711.out
+M	testPar.cpp
+
+commit e88a1bff36c6c441632e7a6a52469cb4f1480fc6
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sat Mar 15 22:26:42 2025 +0000
+
+    Fixed error in KE calc with average KE used, KE no longer exactly constant
+
+M	KE_Data/Data/ic-one-vel.txt
+M	KE_Data/Data/ic-one.txt
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two-pass1.txt
+M	KE_Data/Data/ic-two-pass2.txt
+M	KE_Data/Data/ic-two-pass3.txt
+M	KE_Data/Data/ic-two.txt
+M	Makefile
+M	Particle_Data/Data/ic-one-vel.txt
+M	Particle_Data/Data/ic-one.txt
+M	Particle_Data/Data/ic-two-pass1.txt
+M	Particle_Data/Data/ic-two-pass2.txt
+M	Particle_Data/Data/ic-two-pass3.txt
+M	Particle_Data/Data/ic-two.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	boxPar.cpp
+D	boxPar.o
+D	dynamicsPar.o
+A	job-script.slr
+M	md
+D	mdpar
+D	parse_clPar.o
+D	particlePar.o
+A	slurm-26707.out
+A	slurm-26710.out
+A	slurm-26711.out
+M	test.cpp
+A	testPar.cpp
+
+commit 8d6e6138e806c3e8318bf77e70f559077715601c
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 23:24:11 2025 +0000
+
+    Made CalculateF_i parallel
+
+M	KE_Data/Data/ic-random.txt
+M	Makefile
+M	box.cpp
+M	box.h
+M	box.o
+A	boxPar.cpp
+A	boxPar.o
+D	debug
+M	dynamics.o
+A	dynamicsPar.cpp
+A	dynamicsPar.o
+M	md
+A	mdpar
+M	parse_cl.cpp
+M	parse_cl.h
+M	parse_cl.o
+A	parse_clPar.cpp
+A	parse_clPar.o
+M	particle.cpp
+M	particle.h
+M	particle.o
+A	particlePar.cpp
+A	particlePar.o
+
+commit 6b64fb26e9e0203b7c4aecd65065db5c8a6381e2
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 16:48:33 2025 +0000
+
+    Finished Doxygen documenation
+
+M	KE_Data/Data/ic-random.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	dynamics.cpp
+M	dynamics.o
+D	initial11.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial11.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial11.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial11.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial11.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial11.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial11.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial11.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial11.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial11.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial11.er/archives/md_tg2sfSUp__b
+D	initial11.er/data.frameinfo
+D	initial11.er/dyntext
+D	initial11.er/er_archive.log
+D	initial11.er/jclasses
+D	initial11.er/log.xml
+D	initial11.er/map.xml
+D	initial11.er/overview
+D	initial11.er/profile
+M	md
+M	parse_cl.cpp
+M	parse_cl.h
+M	parse_cl.o
+M	particle.cpp
+M	particle.h
+M	particle.o
+
+commit 9d849d6dfd0245f25df75457ee04558d0f146465
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 15:13:26 2025 +0000
+
+    Separated dynamics.cpp into dynamics.cpp and a header and cpp pase_cl to parse the command lines
+
+M	Makefile
+A	box.o
+M	dynamics.cpp
+A	dynamics.o
+A	md
+A	parse_cl.cpp
+A	parse_cl.h
+A	parse_cl.o
+A	particle.o
+
+commit 3f65ed5f832a483e311b58edafa65bedc66d12d8
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 14:24:46 2025 +0000
+
+    Created Doxygen documenteation for all files apart from dynamics.cpp
+
+M	Makefile
+M	box.cpp
+M	box.h
+D	box.o
+D	dynamics.o
+R100	initial2.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9	initial10.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+R100	initial2.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9	initial10.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+R100	initial2.er/archives/libc.so.6_dnWuQRcLhw9	initial10.er/archives/libc.so.6_dnWuQRcLhw9
+R100	initial2.er/archives/libcollector.so_kN_xj2QRtH5	initial10.er/archives/libcollector.so_kN_xj2QRtH5
+R100	initial2.er/archives/libdl.so.2_dnWuQRcLhw9	initial10.er/archives/libdl.so.2_dnWuQRcLhw9
+R100	initial2.er/archives/libgcc_s.so.1_dnWuQRcLhw9	initial10.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+R100	initial2.er/archives/libm.so.6_dnWuQRcLhw9	initial10.er/archives/libm.so.6_dnWuQRcLhw9
+R100	initial2.er/archives/libpthread.so.0_dnWuQRcLhw9	initial10.er/archives/libpthread.so.0_dnWuQRcLhw9
+R100	initial2.er/archives/librt.so.1_dnWuQRcLhw9	initial10.er/archives/librt.so.1_dnWuQRcLhw9
+R100	initial2.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9	initial10.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial10.er/archives/md_tg2sfSUp__b
+R096	initial9.er/data.frameinfo	initial10.er/data.frameinfo
+R095	initial2.er/dyntext	initial10.er/dyntext
+A	initial10.er/er_archive.log
+R100	initial2.er/jclasses	initial10.er/jclasses
+R096	initial9.er/log.xml	initial10.er/log.xml
+R088	initial5.er/map.xml	initial10.er/map.xml
+A	initial10.er/overview
+R094	initial9.er/profile	initial10.er/profile
+R100	initial3.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9	initial11.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+R100	initial3.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9	initial11.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+R100	initial3.er/archives/libc.so.6_dnWuQRcLhw9	initial11.er/archives/libc.so.6_dnWuQRcLhw9
+R100	initial3.er/archives/libcollector.so_kN_xj2QRtH5	initial11.er/archives/libcollector.so_kN_xj2QRtH5
+R100	initial3.er/archives/libdl.so.2_dnWuQRcLhw9	initial11.er/archives/libdl.so.2_dnWuQRcLhw9
+R100	initial3.er/archives/libgcc_s.so.1_dnWuQRcLhw9	initial11.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+R100	initial3.er/archives/libm.so.6_dnWuQRcLhw9	initial11.er/archives/libm.so.6_dnWuQRcLhw9
+R100	initial3.er/archives/libpthread.so.0_dnWuQRcLhw9	initial11.er/archives/libpthread.so.0_dnWuQRcLhw9
+R100	initial3.er/archives/librt.so.1_dnWuQRcLhw9	initial11.er/archives/librt.so.1_dnWuQRcLhw9
+R100	initial3.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9	initial11.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial11.er/archives/md_tg2sfSUp__b
+R093	initial8.er/data.frameinfo	initial11.er/data.frameinfo
+R095	initial3.er/dyntext	initial11.er/dyntext
+A	initial11.er/er_archive.log
+R100	initial3.er/jclasses	initial11.er/jclasses
+R096	initial8.er/log.xml	initial11.er/log.xml
+R088	initial4.er/map.xml	initial11.er/map.xml
+A	initial11.er/overview
+A	initial11.er/profile
+D	initial2.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+D	initial2.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+D	initial2.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+D	initial2.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+D	initial2.er/archives/md_tg2sfSUp__b
+D	initial2.er/data.frameinfo
+D	initial2.er/er_archive.log
+D	initial2.er/log.xml
+D	initial2.er/map.xml
+D	initial2.er/overview
+D	initial2.er/profile
+D	initial3.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+D	initial3.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+D	initial3.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+D	initial3.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+D	initial3.er/archives/md_tg2sfSUp__b
+D	initial3.er/data.frameinfo
+D	initial3.er/er_archive.log
+D	initial3.er/log.xml
+D	initial3.er/map.xml
+D	initial3.er/overview
+D	initial3.er/profile
+D	initial4.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial4.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial4.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial4.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial4.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial4.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial4.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial4.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial4.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial4.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial4.er/archives/md_tg2sfSUp__b
+D	initial4.er/data.frameinfo
+D	initial4.er/dyntext
+D	initial4.er/er_archive.log
+D	initial4.er/jclasses
+D	initial4.er/log.xml
+D	initial4.er/overview
+D	initial4.er/profile
+D	initial5.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial5.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial5.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial5.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial5.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial5.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial5.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial5.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial5.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial5.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial5.er/archives/md_tg2sfSUp__b
+D	initial5.er/data.frameinfo
+D	initial5.er/dyntext
+D	initial5.er/er_archive.log
+D	initial5.er/jclasses
+D	initial5.er/log.xml
+D	initial5.er/overview
+D	initial5.er/profile
+D	initial6.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial6.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial6.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial6.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial6.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial6.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial6.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial6.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial6.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial6.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial6.er/archives/md_tg2sfSUp__b
+D	initial6.er/data.frameinfo
+D	initial6.er/dyntext
+D	initial6.er/er_archive.log
+D	initial6.er/jclasses
+D	initial6.er/log.xml
+D	initial6.er/map.xml
+D	initial6.er/overview
+D	initial6.er/profile
+D	initial7.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial7.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial7.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial7.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial7.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial7.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial7.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial7.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial7.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial7.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial7.er/archives/md_tg2sfSUp__b
+D	initial7.er/data.frameinfo
+D	initial7.er/dyntext
+D	initial7.er/er_archive.log
+D	initial7.er/jclasses
+D	initial7.er/log.xml
+D	initial7.er/map.xml
+D	initial7.er/overview
+D	initial7.er/profile
+D	initial8.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial8.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial8.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial8.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial8.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial8.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial8.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial8.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial8.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial8.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial8.er/archives/md_tg2sfSUp__b
+D	initial8.er/dyntext
+D	initial8.er/er_archive.log
+D	initial8.er/jclasses
+D	initial8.er/map.xml
+D	initial8.er/overview
+D	initial8.er/profile
+D	initial9.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+D	initial9.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+D	initial9.er/archives/libc.so.6_dnWuQRcLhw9
+D	initial9.er/archives/libcollector.so_kN_xj2QRtH5
+D	initial9.er/archives/libdl.so.2_dnWuQRcLhw9
+D	initial9.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+D	initial9.er/archives/libm.so.6_dnWuQRcLhw9
+D	initial9.er/archives/libpthread.so.0_dnWuQRcLhw9
+D	initial9.er/archives/librt.so.1_dnWuQRcLhw9
+D	initial9.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+D	initial9.er/archives/md_tg2sfSUp__b
+D	initial9.er/dyntext
+D	initial9.er/er_archive.log
+D	initial9.er/jclasses
+D	initial9.er/map.xml
+D	initial9.er/overview
+D	md
+M	particle.cpp
+M	particle.h
+D	particle.o
+
+commit 07a18d8feac3d5d97e4314113a7368a692e818db
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 02:27:52 2025 +0000
+
+    final plots
+
+M	KE_Data/Graphs/ic-one-vel.png
+M	KE_Data/Graphs/ic-one.png
+M	KE_Data/Graphs/ic-two-pass1.png
+M	KE_Data/Graphs/ic-two-pass2.png
+M	KE_Data/Graphs/ic-two-pass3.png
+M	KE_Data/Graphs/ic-two.png
+M	Particle_Data/Graphs/ic-one-vel.png
+M	Particle_Data/Graphs/ic-one.png
+M	Particle_Data/Graphs/ic-two-pass1.png
+M	Particle_Data/Graphs/ic-two-pass2.png
+M	Particle_Data/Graphs/ic-two-pass3.png
+M	Particle_Data/Graphs/ic-two.png
+M	plotting.mlx
+
+commit 18e2540132c6b718fddd00855b22ea04421a98f0
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Fri Mar 14 02:24:27 2025 +0000
+
+    Completed optimatisation using profiler
+
+M	KE_Data/Data/ic-random.txt
+M	Makefile
+M	box.cpp
+M	box.h
+M	box.o
+M	dynamics.o
+M	initial8.er/archives/md_tg2sfSUp__b
+M	initial8.er/data.frameinfo
+M	initial8.er/dyntext
+M	initial8.er/er_archive.log
+M	initial8.er/log.xml
+M	initial8.er/map.xml
+M	initial8.er/overview
+M	initial8.er/profile
+A	initial9.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial9.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial9.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial9.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial9.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial9.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial9.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial9.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial9.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial9.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial9.er/archives/md_tg2sfSUp__b
+A	initial9.er/data.frameinfo
+A	initial9.er/dyntext
+A	initial9.er/er_archive.log
+A	initial9.er/jclasses
+A	initial9.er/log.xml
+A	initial9.er/map.xml
+A	initial9.er/overview
+A	initial9.er/profile
+M	md
+M	particle.cpp
+M	particle.h
+M	particle.o
+
+commit 3234fd839e77261536ec92990fe87e83aa2922ed
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 23:21:30 2025 +0000
+
+    reduce calcaulteF_i time
+
+M	KE_Data/Data/ic-random.txt
+M	box.cpp
+M	box.o
+M	initial8.er/archives/md_tg2sfSUp__b
+M	initial8.er/data.frameinfo
+M	initial8.er/dyntext
+M	initial8.er/er_archive.log
+M	initial8.er/log.xml
+M	initial8.er/map.xml
+M	initial8.er/overview
+M	initial8.er/profile
+M	md
+
+commit b73f4dd620a59c38a0fcf6f08dcda8f578ff68e7
+Merge: f86027c 4f9ca82
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 20:35:35 2025 +0000
+
+    merged branches
+
+commit f86027cb945adb4b5afc2d992a50c435bde30321
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 20:24:17 2025 +0000
+
+    Redued to 2.7 seconds
+
+M	KE_Data/Data/ic-random.txt
+M	box.cpp
+M	box.o
+M	dynamics.o
+A	initial6.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial6.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial6.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial6.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial6.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial6.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial6.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial6.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial6.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial6.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial6.er/archives/md_tg2sfSUp__b
+A	initial6.er/data.frameinfo
+A	initial6.er/dyntext
+A	initial6.er/er_archive.log
+A	initial6.er/jclasses
+A	initial6.er/log.xml
+A	initial6.er/map.xml
+A	initial6.er/overview
+A	initial6.er/profile
+A	initial7.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial7.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial7.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial7.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial7.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial7.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial7.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial7.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial7.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial7.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial7.er/archives/md_tg2sfSUp__b
+A	initial7.er/data.frameinfo
+A	initial7.er/dyntext
+A	initial7.er/er_archive.log
+A	initial7.er/jclasses
+A	initial7.er/log.xml
+A	initial7.er/map.xml
+A	initial7.er/overview
+A	initial7.er/profile
+A	initial8.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial8.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial8.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial8.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial8.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial8.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial8.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial8.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial8.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial8.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial8.er/archives/md_tg2sfSUp__b
+A	initial8.er/data.frameinfo
+A	initial8.er/dyntext
+A	initial8.er/er_archive.log
+A	initial8.er/jclasses
+A	initial8.er/log.xml
+A	initial8.er/map.xml
+A	initial8.er/overview
+A	initial8.er/profile
+M	md
+M	particle.cpp
+M	particle.h
+M	particle.o
+
+commit 781988b47b3aaa7ac1f315b568849a798e2ab29e
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 19:05:24 2025 +0000
+
+    added force range and now changin from dynamic memory to vectors to boost perofmrace
+
+M	KE_Data/Data/ic-random.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	dynamics.o
+M	initial5.er/archives/md_tg2sfSUp__b
+M	initial5.er/data.frameinfo
+M	initial5.er/dyntext
+M	initial5.er/er_archive.log
+M	initial5.er/log.xml
+M	initial5.er/map.xml
+M	initial5.er/overview
+M	initial5.er/profile
+M	md
+M	particle.h
+
+commit 87926d87315b0cdd020fc6cd8f1879f242bbdab7
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 17:47:46 2025 +0000
+
+    made findR inline and chaing dynamic memory to arrays
+
+M	KE_Data/Data/ic-random.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	dynamics.cpp
+M	dynamics.o
+A	initial5.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial5.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial5.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial5.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial5.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial5.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial5.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial5.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial5.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial5.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial5.er/archives/md_tg2sfSUp__b
+A	initial5.er/data.frameinfo
+A	initial5.er/dyntext
+A	initial5.er/er_archive.log
+A	initial5.er/jclasses
+A	initial5.er/log.xml
+A	initial5.er/map.xml
+A	initial5.er/overview
+A	initial5.er/profile
+M	md
+
+commit bd624b59f30d6fe68b977da10d3db2d415ec720f
+Merge: 6a962dd 0bec6ee
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 17:05:34 2025 +0000
+
+    Merge branch 'old-state'
+
+commit 6a962dd2298049cd3ddfe940493ab029e5d3a19f
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 17:03:54 2025 +0000
+
+    fixing erre with git
+
+A	.nfs000000000e63a1c400043a57
+
+commit 0bec6eec67a8dc8492ee6dd0bd9d969ce6c4e133
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 16:58:23 2025 +0000
+
+    optimising code further
+
+A	.nfs000000000e63a1c400043a57
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	dynamics.cpp
+M	dynamics.o
+A	initial3.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial3.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+A	initial3.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+A	initial3.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial3.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial3.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial3.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial3.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial3.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+A	initial3.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial3.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial3.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+A	initial3.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial3.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial3.er/archives/md_tg2sfSUp__b
+A	initial3.er/data.frameinfo
+A	initial3.er/dyntext
+A	initial3.er/er_archive.log
+A	initial3.er/jclasses
+A	initial3.er/log.xml
+A	initial3.er/map.xml
+A	initial3.er/overview
+A	initial3.er/profile
+A	initial4.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial4.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial4.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial4.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial4.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial4.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial4.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial4.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial4.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial4.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial4.er/archives/md_tg2sfSUp__b
+A	initial4.er/data.frameinfo
+A	initial4.er/dyntext
+A	initial4.er/er_archive.log
+A	initial4.er/jclasses
+A	initial4.er/log.xml
+A	initial4.er/map.xml
+A	initial4.er/overview
+A	initial4.er/profile
+M	md
+M	particle.cpp
+M	particle.h
+M	particle.o
+A	test.o
+A	unittests
+
+commit 62dd231317949935f7e0e2cab6510f8bf75901fe
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 00:24:39 2025 +0000
+
+    Removed pow to save 7+ seconds
+
+M	KE_Data/Data/ic-random.txt
+M	KE_Data/Data/ic-two.txt
+M	box.cpp
+M	box.o
+M	dynamics.o
+A	initial2.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial2.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+A	initial2.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+A	initial2.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial2.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial2.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial2.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial2.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial2.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+A	initial2.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial2.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial2.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+A	initial2.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial2.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial2.er/archives/md_tg2sfSUp__b
+A	initial2.er/data.frameinfo
+A	initial2.er/dyntext
+A	initial2.er/er_archive.log
+A	initial2.er/jclasses
+A	initial2.er/log.xml
+A	initial2.er/map.xml
+A	initial2.er/overview
+A	initial2.er/profile
+M	md
+M	particle.o
+
+commit cd9416742f3fd65b050c02e039c9bff08257e7ca
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 13 00:14:36 2025 +0000
+
+    removed BLAS oeprations from findR() to optimise code
+
+M	KE_Data/Data/ic-random.txt
+M	Makefile
+M	box.cpp
+M	box.o
+A	debug
+M	dynamics.o
+A	initial.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+A	initial.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+A	initial.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+A	initial.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+A	initial.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial.er/archives/md_tg2sfSUp__b
+A	initial.er/data.frameinfo
+A	initial.er/dyntext
+A	initial.er/er_archive.log
+A	initial.er/jclasses
+A	initial.er/log.xml
+A	initial.er/map.xml
+A	initial.er/overview
+A	initial.er/profile
+A	initial1.er/archives/ld-linux-x86-64.so.2_dnWuQRcLhw9
+A	initial1.er/archives/libatlas.so.3.10.3_dnWuQRcLhw9
+A	initial1.er/archives/libblas.so.3.10.3_IiHvjNbM48a
+A	initial1.er/archives/libboost_program_options.so.1.74.0_dnWuQRcLhw9
+A	initial1.er/archives/libc.so.6_dnWuQRcLhw9
+A	initial1.er/archives/libcollector.so_kN_xj2QRtH5
+A	initial1.er/archives/libdl.so.2_dnWuQRcLhw9
+A	initial1.er/archives/libgcc_s.so.1_dnWuQRcLhw9
+A	initial1.er/archives/libgfortran.so.5.0.0_dnWuQRcLhw9
+A	initial1.er/archives/libm.so.6_dnWuQRcLhw9
+A	initial1.er/archives/libpthread.so.0_dnWuQRcLhw9
+A	initial1.er/archives/libquadmath.so.0.0.0_dnWuQRcLhw9
+A	initial1.er/archives/librt.so.1_dnWuQRcLhw9
+A	initial1.er/archives/libstdc++.so.6.0.30_dnWuQRcLhw9
+A	initial1.er/archives/md_tg2sfSUp__b
+A	initial1.er/data.frameinfo
+A	initial1.er/dyntext
+A	initial1.er/er_archive.log
+A	initial1.er/jclasses
+A	initial1.er/log.xml
+A	initial1.er/map.xml
+A	initial1.er/overview
+A	initial1.er/profile
+M	md
+M	particle.cpp
+M	particle.h
+M	particle.o
+
+commit d45ef7f893839106f80761dff761d385336b586b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 12 21:44:40 2025 +0000
+
+    beginning optimisation with profiler
+
+M	KE_Data/Data/ic-random.txt
+M	Makefile
+D	test.o
+D	unittests
+
+commit 0d9812b8505b128c06b872ed5cf201c24da1557f
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 9 13:00:52 2025 +0000
+
+    Added unit tests and veriffied all tests passed
+
+A	KE_Data/Data/ic-random.txt
+M	Makefile
+A	Particle_Data/Data/ic-random.txt
+M	box.cpp
+M	box.h
+M	box.o
+M	md
+M	particle.cpp
+M	particle.h
+M	particle.o
+A	test.cpp
+A	test.o
+A	unittests
+
+commit 5b4c6cd8f4f890376411732a09428cea43d45294
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 9 01:34:54 2025 +0000
+
+    created Makefile
+
+M	KE_Data/Data/ic-one-vel.txt
+M	KE_Data/Data/ic-one.txt
+A	Makefile
+M	Particle_Data/Data/ic-one-vel.txt
+M	Particle_Data/Data/ic-one.txt
+A	box.o
+A	dynamics.o
+M	md
+A	particle.o
+
+commit 565ddd8e901bec2e904b047bd9537e2c4d15d989
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sun Mar 9 00:06:44 2025 +0000
+
+    Corrected error with particle udpates
+
+M	KE_Data/Data/ic-one-vel.txt
+M	KE_Data/Data/ic-one.txt
+M	KE_Data/Data/ic-two-pass1.txt
+M	KE_Data/Data/ic-two-pass2.txt
+M	KE_Data/Data/ic-two-pass3.txt
+M	KE_Data/Data/ic-two.txt
+M	Particle_Data/Data/ic-one-vel.txt
+M	Particle_Data/Data/ic-one.txt
+M	Particle_Data/Data/ic-two-pass1.txt
+M	Particle_Data/Data/ic-two-pass2.txt
+M	Particle_Data/Data/ic-two-pass3.txt
+M	Particle_Data/Data/ic-two.txt
+M	box.cpp
+M	md
+M	particle.cpp
+M	particle.h
+
+commit 79f73fc2aecf0f13b6b6f5e0baa983a435dec267
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Sat Mar 8 23:41:50 2025 +0000
+
+    separated into ehaders and cpp files
+
+A	box.cpp
+M	box.h
+D	box.h.gch
+M	dynamics.cpp
+D	dynamics.o
+M	md
+A	particle.cpp
+M	particle.h
+D	particle.h.gch
+
+commit 4f9ca822cb81b2f3b63c5fd5607253b5546daf10
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 23:49:44 2025 +0000
+
+    Split into header and cpp files
+
+A	box.cpp
+M	box.h
+A	box_old.h
+M	dynamics.cpp
+M	particle.cpp
+M	particle.h
+
+commit d93f3834794a4cf8cfa2b889d1d895b620b2f0c7
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 19:49:23 2025 +0000
+
+    separated particle.h into particle.h and particle.cpp, also changed dynamic memory to arrays since there were sometimes issues with memory allocation
+
+A	particle.cpp
+M	particle.h
+
+commit e196e80b94087068c661d929e440cabc3fcfd136
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 18:59:20 2025 +0000
+
+    Spliiting header files into a header file and a cpp file for beater modualrity
+
+M	box.h
+M	particle.h
+A	particle_old.h
+
+commit 61bdfb7ca891d751c8d28b66af1e3dd93f92fd21
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 18:07:29 2025 +0000
+
+    added titles to plots
+
+M	KE_Data/Graphs/ic-one-vel.png
+M	KE_Data/Graphs/ic-one.png
+M	KE_Data/Graphs/ic-two-pass1.png
+M	KE_Data/Graphs/ic-two-pass2.png
+M	KE_Data/Graphs/ic-two-pass3.png
+M	KE_Data/Graphs/ic-two.png
+M	Particle_Data/Graphs/ic-one-vel.png
+M	Particle_Data/Graphs/ic-one.png
+M	Particle_Data/Graphs/ic-two-pass1.png
+M	Particle_Data/Graphs/ic-two-pass2.png
+M	Particle_Data/Graphs/ic-two-pass3.png
+M	Particle_Data/Graphs/ic-two.png
+M	plotting.mlx
+
+commit 31e7d2aad9a9063375576f0605a4d7f6aa3ab227
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 17:21:20 2025 +0000
+
+    fixed errors with plots in matlab
+
+M	KE_Data/Graphs/ic-one-vel.png
+M	KE_Data/Graphs/ic-one.png
+M	KE_Data/Graphs/ic-two-pass1.png
+M	KE_Data/Graphs/ic-two-pass2.png
+M	KE_Data/Graphs/ic-two-pass3.png
+M	KE_Data/Graphs/ic-two.png
+M	Particle_Data/Graphs/ic-one-vel.png
+M	Particle_Data/Graphs/ic-one.png
+M	Particle_Data/Graphs/ic-two-pass1.png
+M	Particle_Data/Graphs/ic-two-pass2.png
+M	Particle_Data/Graphs/ic-two-pass3.png
+M	Particle_Data/Graphs/ic-two.png
+M	plotting.mlx
+
+commit 256543d2d480b75cdebb73d584c6fd4beb677c9f
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 16:14:04 2025 +0000
+
+    made plots more legible
+
+M	KE_Data/Graphs/ic-one-vel.png
+M	KE_Data/Graphs/ic-one.png
+M	KE_Data/Graphs/ic-two-pass1.png
+M	KE_Data/Graphs/ic-two-pass2.png
+M	KE_Data/Graphs/ic-two-pass3.png
+M	KE_Data/Graphs/ic-two.png
+M	Particle_Data/Graphs/ic-one-vel.png
+M	Particle_Data/Graphs/ic-one.png
+M	Particle_Data/Graphs/ic-two-pass1.png
+M	Particle_Data/Graphs/ic-two-pass2.png
+M	Particle_Data/Graphs/ic-two-pass3.png
+M	Particle_Data/Graphs/ic-two.png
+M	plotting.mlx
+
+commit dc76e760cc72e7c6de5f8c70ee4e9592d932a3dd
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 15:49:34 2025 +0000
+
+    ploted all test cases
+
+A	KE_Data/Graphs/ic-one-vel.png
+A	KE_Data/Graphs/ic-one.png
+A	KE_Data/Graphs/ic-two-pass1.png
+A	KE_Data/Graphs/ic-two-pass2.png
+A	KE_Data/Graphs/ic-two-pass3.png
+A	KE_Data/Graphs/ic-two.png
+A	Particle_Data/Graphs/ic-one-vel.png
+A	Particle_Data/Graphs/ic-one.png
+A	Particle_Data/Graphs/ic-two-pass1.png
+A	Particle_Data/Graphs/ic-two-pass2.png
+A	Particle_Data/Graphs/ic-two-pass3.png
+A	Particle_Data/Graphs/ic-two.png
+M	plotting.mlx
+
+commit 7a917fda45b3468c4529a145a21dd18bd85023d3
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 13:57:29 2025 +0000
+
+    All txt files for test cases generated
+
+A	KE_Data/Data/ic-one-vel.txt
+A	KE_Data/Data/ic-one.txt
+A	KE_Data/Data/ic-two-pass1.txt
+A	KE_Data/Data/ic-two-pass2.txt
+A	KE_Data/Data/ic-two-pass3.txt
+A	Particle_Data/Data/ic-one-vel.txt
+A	Particle_Data/Data/ic-one.txt
+A	Particle_Data/Data/ic-two-pass1.txt
+A	Particle_Data/Data/ic-two-pass2.txt
+A	Particle_Data/Data/ic-two-pass3.txt
+
+commit 390ea4549914a921cd6a22670522c03dc7402436
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 13:55:38 2025 +0000
+
+    added MATLAB plot code for cases 1-6
+
+A	plotting.mlx
+D	repository.log
+
+commit 09767e76175ff808c9ed4e8f6048ddf4ef30f881
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 13:53:01 2025 +0000
+
+    Changed file save location to separate directories for MATLAB
+
+R100	KEdata.txt	KE_Data/Data/ic-two.txt
+R100	particleData.txt	Particle_Data/Data/ic-two.txt
+M	box.h
+M	dynamics.cpp
+M	dynamics.o
+M	md
+
+commit 338096f71a660fdeec6f7e1fbdd78b1162145058
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 13:32:35 2025 +0000
+
+    all files uploaded
+
+A	KEdata.txt
+M	box.h
+A	box.h.gch
+A	dynamics.o
+A	md
+A	particle.h.gch
+A	particleData.txt
+A	repository.log
+D	test.txt
+
+commit be968a8051ff67d63918e86c394c1dc3ec55e9bc
+Author: Ishaan1232 <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 13:30:37 2025 +0000
+
+    testing personal computer
+
+A	test.txt
+
+commit da021e265b1f036f56297d8046583650160186b4
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Thu Mar 6 00:31:07 2025 +0000
+
+    Attempting to fix error in system
+
+M	box.h
+
+commit 52795af544089b74bf6c224da183069a0a63d252
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 21:57:45 2025 +0000
+
+    Completed output to text files
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit de62ff315303999423fa51144d4023f81a92ef3a
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 19:08:38 2025 +0000
+
+    system dynamics completed
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit ffdb25d515e8080ac70e27b620f8a0dcb8d677be
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 16:51:52 2025 +0000
+
+    added a copy constructor to particle to fix memory issues
+
+M	box.h
+M	particle.h
+
+commit e676780e389531c03f79d634b3eb63666776d764
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:59:21 2025 +0000
+
+    chnaged box.h to blas implementation
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit f3d8cc984b8a64026f2f117e99ec5480ea420471
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:16:29 2025 +0000
+
+    Updated destructor in particl.h to free memory when destroyed
+
+M	particle.h
+
+commit 47c74a16ee5388ef1160ceeaa57b4b74d3b03cc0
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 15:13:02 2025 +0000
+
+    particle class now uses blas implementation
+
+M	particle.h
+
+commit 1c4e0f62a5624bf472f8a1a306d2b2d78357a63b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:43:59 2025 +0000
+
+    Testing test branch
+
+M	particle.h
+
+commit 3490f24c4218ec3c745ca1ac5b7be1e745b01ed5
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:42:17 2025 +0000
+
+    Testing test branch
+
+M	particle.h
+
+commit dff1202e62bcbbe37b4ff4b684cb92e3af409808
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:37:30 2025 +0000
+
+    Attempting BLAS for vector operations in test branch
+
+M	particle.h
+
+commit 2e336fe99b114f5c9c7233676c935b1841b91667
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:32:42 2025 +0000
+
+    Calcualted force on particle i
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit e1aa9d77d1ed2c47cc628f18a8d1cbe76896e396
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 14:01:06 2025 +0000
+
+    added function to particle class to calcualte force on particle i due to particle j
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit d02df12d61f2398b92a026f447ea427b69b39e26
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 01:41:55 2025 +0000
+
+    finsihed particle insertion with separation check, began simulation running
+
+M	box.h
+M	dynamics.cpp
+D	help.txt
+M	particle.h
+
+commit cd71532f41604be4d89a8739448950649eccc3aa
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 00:47:31 2025 +0000
+
+    began random particle insertion
+
+M	dynamics.cpp
+
+commit d1ab87fa066f96b83b54e26ef9fd8c60b1b13371
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Wed Mar 5 00:19:06 2025 +0000
+
+    Switched command line arguemnt parsing with boost_program_options
+
+M	box.h
+M	dynamics.cpp
+M	particle.h
+
+commit 8f8b221917fa702cd9fe12a9ad1df5ed3020c812
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 13:01:29 2025 +0000
+
+    Added specific intiial conditions to box
+
+M	box.h
+M	dynamics.cpp
+
+commit 0b42b05b3155fed97787e17475b4b84983e9cc33
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 02:57:26 2025 +0000
+
+    Remainign command line arguments added
+
+M	dynamics.cpp
+
+commit a21b1d8cd815cc6b422408324769c5fdfd6f3f60
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 02:00:28 2025 +0000
+
+    help command-line added via txt file
+
+M	box.h
+M	dynamics.cpp
+A	help.txt
+
+commit 940b6621e3831f95ec54fc5fe676930dd0ce7a2b
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 00:53:23 2025 +0000
+
+    added header guards
+
+M	dynamics.cpp
+M	particle.h
+
+commit 30f1978da17213062b6d47d0f52c9f06ef4a1ec5
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Tue Mar 4 00:48:31 2025 +0000
+
+    added class for the box, including constructor, addign aprticles and finding particle separation
+
+A	box.h
+
+commit 0bc2d83d43c4c919bac515b5eabb2a09af4939a4
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 23:11:07 2025 +0000
+
+    testing still
+
+M	dynamics.cpp
+
+commit c5a5866148ffedf63d39d04432a2c5d41dfb87e9
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 23:00:38 2025 +0000
+
+    testing class
+
+M	dynamics.cpp
+
+commit a44580a6eda9cbabd1d3d6193db914bdb70b6efe
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 22:52:55 2025 +0000
+
+    added particle constructor and basic functions
+
+M	dynamics.cpp
+M	particle.h
+
+commit f9f75e3185cfce0c20fec2877621daa3e11fdf51
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 21:49:06 2025 +0000
+
+    added header file for particle class
+
+A	particle.h
+
+commit 383868dea1ab34cbe4b9d4763fd22ebf3b510cac
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:39:38 2025 +0000
+
+    testing remote
+
+M	dynamics.cpp
+
+commit b3e51233e5e1fda449fc60035295eff4ad0c0e79
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:15:07 2025 +0000
+
+    started code
+
+M	dynamics.cpp
+
+commit 60d5301be82b8799c13170f582347a27f1696d16
+Author: Ishaan Bhargava <ishaan.bhargava22@imperial.ac.uk>
+Date:   Mon Mar 3 16:12:12 2025 +0000
+
+    created c++ file
+
+A	dynamics.cpp
