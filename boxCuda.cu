@@ -199,7 +199,15 @@ void computeKineticEnergy(double* gpu_particles, double* gpu_KE, int N) {
     }
 }
 
-
+/**
+ * @brief CUDA Kernel to scale velcoites for constant temperature
+ * 
+ * Scales the velocities by lambda for each particle
+ * 
+ * @param gpu_particles gpu array 
+ * @param lambda scale factor
+ * @param N number of particles
+ */
 __global__ 
 void scaleVelocities(double* gpu_particles, double lambda, int N) {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
@@ -209,7 +217,6 @@ void scaleVelocities(double* gpu_particles, double lambda, int N) {
         gpu_particles[10 * i + 5] *= lambda;
     }
 }
-
 
 /**
  * The simulation is run for T seconds where the particles are updated every timesetep.
