@@ -1,0 +1,51 @@
+\hypertarget{parse__cl_8cpp}{}\doxysection{parse\+\_\+cl.\+cpp File Reference}
+\label{parse__cl_8cpp}\index{parse\_cl.cpp@{parse\_cl.cpp}}
+
+
+Implements the parse\+Command\+Line function.  
+
+
+{\ttfamily \#include \char`\"{}parse\+\_\+cl.\+h\char`\"{}}\newline
+Include dependency graph for parse\+\_\+cl.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{parse__cl_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSimulationParameters}{Simulation\+Parameters}} \mbox{\hyperlink{parse__cl_8cpp_a43ed49d69bed45a0f4614ac96b6ee6b6}{parse\+Command\+Line}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Parses command-\/line arguments to get simulation parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the parse\+Command\+Line function. 
+
+This file provides the implementation of the {\ttfamily parse\+Command\+Line} function, which extracts and validates user inputs using the Boost.\+Program\+Options library. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{parse__cl_8cpp_a43ed49d69bed45a0f4614ac96b6ee6b6}\label{parse__cl_8cpp_a43ed49d69bed45a0f4614ac96b6ee6b6}} 
+\index{parse\_cl.cpp@{parse\_cl.cpp}!parseCommandLine@{parseCommandLine}}
+\index{parseCommandLine@{parseCommandLine}!parse\_cl.cpp@{parse\_cl.cpp}}
+\doxysubsubsection{\texorpdfstring{parseCommandLine()}{parseCommandLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSimulationParameters}{Simulation\+Parameters}} parse\+Command\+Line (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Parses command-\/line arguments to get simulation parameters. 
+
+This function utilizes the Boost.\+Program\+Options library to handle user inputs, validate them appropriately, and return the parameters as a struct.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of all command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structSimulationParameters}{Simulation\+Parameters}} Struct containing simulation parameters. 
+\end{DoxyReturn}

@@ -1,0 +1,42 @@
+\hypertarget{particle_8h_source}{}\doxysection{particle.\+h}
+\mbox{\hyperlink{particle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#ifndef PARTICLE\_H}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define PARTICLE\_H}\textcolor{comment}{// header guard to prevent being included in multiple files}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <cmath>} }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <fstream>} }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{18 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{24 \textcolor{keyword}{class }\mbox{\hyperlink{classParticle}{Particle}} \{}
+\DoxyCodeLine{25     \textcolor{keyword}{private}:}
+\DoxyCodeLine{26         array<double, 3> v;           }
+\DoxyCodeLine{27         \textcolor{keywordtype}{double} mass;         }
+\DoxyCodeLine{29         \textcolor{keywordtype}{void} applyBC(\textcolor{keywordtype}{double}\& pos, \textcolor{keywordtype}{double}\& vel, \textcolor{keywordtype}{double} L);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keyword}{public}:}
+\DoxyCodeLine{32         \textcolor{keywordtype}{int} \mbox{\hyperlink{classParticle_a2b73dd42bcd56ba2e7ffeb0a5515a866}{type}};            }
+\DoxyCodeLine{33         array<double, 3> \mbox{\hyperlink{classParticle_a5812a5e83ff9c92a9765f0c4618f6f28}{r}};           }
+\DoxyCodeLine{34         array<double, 3> \mbox{\hyperlink{classParticle_a04b8a9fd768fde0a1c7d18edd9c066de}{F}};           }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{37         \mbox{\hyperlink{classParticle_a40f4c7e248029d72e7714b7802d5e5e1}{Particle}}();}
+\DoxyCodeLine{39         \mbox{\hyperlink{classParticle_a40f4c7e248029d72e7714b7802d5e5e1}{Particle}}(\textcolor{keywordtype}{double} x\_i, \textcolor{keywordtype}{double} y\_i, \textcolor{keywordtype}{double} z\_i, \textcolor{keywordtype}{double} vx\_i, \textcolor{keywordtype}{double} vy\_i, \textcolor{keywordtype}{double} vz\_i, \textcolor{keywordtype}{int} type\_i);}
+\DoxyCodeLine{41         \mbox{\hyperlink{classParticle_a40f4c7e248029d72e7714b7802d5e5e1}{Particle}}(\textcolor{keyword}{const} \mbox{\hyperlink{classParticle}{Particle}}\& p);    }
+\DoxyCodeLine{43         \mbox{\hyperlink{classParticle_a5e670f0f1813d67aaf678a28c1c6b173}{\string~Particle}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{45         \textcolor{keywordtype}{void} \mbox{\hyperlink{classParticle_a9fe4ac339a466a1c1b0a78c49c292bbc}{updatePosition}}(\textcolor{keywordtype}{double} dt);}
+\DoxyCodeLine{47         \textcolor{keywordtype}{void} \mbox{\hyperlink{classParticle_aadecce290bc979abdfad39975e679c31}{updateVelocity}}(\textcolor{keywordtype}{double} dt, \textcolor{keywordtype}{double} Lx, \textcolor{keywordtype}{double} Ly, \textcolor{keywordtype}{double} Lz);}
+\DoxyCodeLine{49         \textcolor{keywordtype}{double} \mbox{\hyperlink{classParticle_a3ca3a2976bfda7b556b3f767feee38a2}{particleKE}}();}
+\DoxyCodeLine{51         \textcolor{keywordtype}{void} \mbox{\hyperlink{classParticle_a34397d4c85e5b3b0d1a73b2b0fc8477e}{scaleTemp}}(\textcolor{keywordtype}{double} lambda);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{58         \textcolor{keyword}{const} array<double, 3>\& \mbox{\hyperlink{classParticle_a41286eb09172a3c7736a6a2f84510d93}{get\_v}}() \{\textcolor{keywordflow}{return} v;\}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{65         \textcolor{keywordtype}{double} \mbox{\hyperlink{classParticle_a3bb1bcd394899b62d0caec207fad92e7}{get\_mass}}() \{\textcolor{keywordflow}{return} mass;\}}
+\DoxyCodeLine{66 \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// PARTICLE\_H}}
+
+\end{DoxyCode}

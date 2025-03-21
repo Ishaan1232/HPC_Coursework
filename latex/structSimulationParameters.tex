@@ -1,0 +1,54 @@
+\hypertarget{structSimulationParameters}{}\doxysection{Simulation\+Parameters Struct Reference}
+\label{structSimulationParameters}\index{SimulationParameters@{SimulationParameters}}
+
+
+Stores simulation parameters parsed from the command line.  
+
+
+
+
+{\ttfamily \#include $<$parse\+\_\+cl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structSimulationParameters_a9c91af7f1d5f1d27724d78b839ebb46e}\label{structSimulationParameters_a9c91af7f1d5f1d27724d78b839ebb46e}} 
+double {\bfseries dt}
+\begin{DoxyCompactList}\small\item\em Time step size (default = 0.\+001) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_ad84306821994ee60dbfc0a672050e305}\label{structSimulationParameters_ad84306821994ee60dbfc0a672050e305}} 
+double {\bfseries Lx}
+\item 
+\mbox{\Hypertarget{structSimulationParameters_a156777ae83772ffa3768f35a2c1d14cf}\label{structSimulationParameters_a156777ae83772ffa3768f35a2c1d14cf}} 
+double {\bfseries Ly}
+\item 
+\mbox{\Hypertarget{structSimulationParameters_a4fe9ceb14d735015793116cded7fa693}\label{structSimulationParameters_a4fe9ceb14d735015793116cded7fa693}} 
+double {\bfseries Lz}
+\begin{DoxyCompactList}\small\item\em Dimensions of the box (default = 20 x 20 x 20) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_ac892d1c0fd2dad630da167c6bc04ccac}\label{structSimulationParameters_ac892d1c0fd2dad630da167c6bc04ccac}} 
+double {\bfseries T}
+\begin{DoxyCompactList}\small\item\em Time to run simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_ad072b22d226a576e1157af7ec77de29a}\label{structSimulationParameters_ad072b22d226a576e1157af7ec77de29a}} 
+double {\bfseries temp}
+\begin{DoxyCompactList}\small\item\em Temperature to be fixed in Kelvin (-\/1 if not fixed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_a69786d46b659d038a74b369b81d1a615}\label{structSimulationParameters_a69786d46b659d038a74b369b81d1a615}} 
+double {\bfseries percent\+\_\+type1}
+\begin{DoxyCompactList}\small\item\em Percent of type 1 particles for random initial condition (default = 10\%) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_a314a9e0497361427bdaa0d3294400204}\label{structSimulationParameters_a314a9e0497361427bdaa0d3294400204}} 
+bool {\bfseries ic\+\_\+random}
+\begin{DoxyCompactList}\small\item\em Boolean indicating if initial condition is random particles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_a42550291f764343806b02860900dcb7e}\label{structSimulationParameters_a42550291f764343806b02860900dcb7e}} 
+std\+::string {\bfseries ic}
+\begin{DoxyCompactList}\small\item\em Initial condition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structSimulationParameters_a0c78c5a92ebd3975fea98148e3639f63}\label{structSimulationParameters_a0c78c5a92ebd3975fea98148e3639f63}} 
+int {\bfseries N}
+\begin{DoxyCompactList}\small\item\em Number of particle for random initial condtion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores simulation parameters parsed from the command line. 
+
+This struct contains parameters for configuring the simulation, including domain size, time step, temperature, and the initial condition. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parse\+\_\+cl.\+h\end{DoxyCompactItemize}

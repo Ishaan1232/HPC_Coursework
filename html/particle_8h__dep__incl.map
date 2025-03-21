@@ -1,0 +1,7 @@
+<map id="particle.h" name="particle.h">
+<area shape="rect" id="node1" title="Defines the SimulationParameters struct for the simulation&#39;s parameters." alt="" coords="118,5,201,32"/>
+<area shape="rect" id="node2" href="$box_8h.html" title="Defines the Box class." alt="" coords="63,80,122,107"/>
+<area shape="rect" id="node4" href="$dynamics_8cpp.html" title="This program initializes the simulation by parsing command&#45;line arguments, setting up initial conditi..." alt="" coords="103,155,215,181"/>
+<area shape="rect" id="node5" href="$particle_8cpp.html" title="Implements the Particle class methods." alt="" coords="197,80,295,107"/>
+<area shape="rect" id="node3" href="$box_8cpp.html" title="Implements the Box class methods." alt="" coords="5,155,79,181"/>
+</map>

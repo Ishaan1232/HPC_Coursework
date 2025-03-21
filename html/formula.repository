@@ -1,0 +1,4 @@
+\_form#0=71x11:$ r = r + v \cdot dt $
+\_form#1=101x14:$ v = v + (F/m) \cdot dt $
+\_form#2=46x10:$ v = \lambda \cdot v $
+\_form#3=68x16:$ KE = \frac{1}{2} m v^2 $

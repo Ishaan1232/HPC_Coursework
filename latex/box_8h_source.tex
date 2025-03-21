@@ -1,0 +1,35 @@
+\hypertarget{box_8h_source}{}\doxysection{box.\+h}
+\mbox{\hyperlink{box_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef BOX\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define BOX\_H}\textcolor{comment}{// header guard to prevent being included in multiple files}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <cmath>} }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <fstream>} }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{particle_8h}{particle.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{classBox}{Box}} \{}
+\DoxyCodeLine{24     \textcolor{keyword}{private}:}
+\DoxyCodeLine{25         \textcolor{keyword}{const} \textcolor{keywordtype}{double} Lx, Ly, Lz;   }
+\DoxyCodeLine{26         vector<Particle> particles;  }
+\DoxyCodeLine{27         \textcolor{keywordtype}{int} N;                  }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{keyword}{public}:}
+\DoxyCodeLine{31         \mbox{\hyperlink{classBox_aca78d7db44972bfa78d46b7bbc8796f6}{Box}}();}
+\DoxyCodeLine{33         \mbox{\hyperlink{classBox_aca78d7db44972bfa78d46b7bbc8796f6}{Box}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} x\_length, \textcolor{keyword}{const} \textcolor{keywordtype}{double} y\_length, \textcolor{keyword}{const} \textcolor{keywordtype}{double} z\_length);  }
+\DoxyCodeLine{35         \mbox{\hyperlink{classBox_a120ab39d9d9bf0cec9601e1df7cfc040}{\string~Box}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{37         \textcolor{keywordtype}{bool} \mbox{\hyperlink{classBox_a4c6fe21b45e78bc917969aa8a2b8ae55}{addParticle}}(\mbox{\hyperlink{classParticle}{Particle}}\& p); }
+\DoxyCodeLine{39         \textcolor{keywordtype}{void} \mbox{\hyperlink{classBox_a5cbb62ecb12a06c4e30327643f255212}{calculateF\_i}}(\mbox{\hyperlink{classParticle}{Particle}}\& p\_i, \textcolor{keywordtype}{int} i);   }
+\DoxyCodeLine{41         \textcolor{keywordtype}{double} \mbox{\hyperlink{classBox_a770b53ed2e86ece0c621f2a4ad687405}{systemKE}}();}
+\DoxyCodeLine{43         \textcolor{keywordtype}{void} \mbox{\hyperlink{classBox_ada54d8d0d22eb6d8f9eefed5ced019fc}{runSimulation}}(\textcolor{keywordtype}{double} dt, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} temp, \textcolor{keywordtype}{bool} ic\_random, \textcolor{keywordtype}{string} ic); }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{52         \textcolor{keyword}{const} vector<Particle>\& \mbox{\hyperlink{classBox_a4d759c1ae6e990a11e7406e44c6ec59a}{get\_particles}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} particles; \}  \textcolor{comment}{// Read-\/only version}}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// BOX\_H}}
+
+\end{DoxyCode}

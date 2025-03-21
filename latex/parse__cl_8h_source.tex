@@ -1,0 +1,30 @@
+\hypertarget{parse__cl_8h_source}{}\doxysection{parse\+\_\+cl.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef PARSE\_CL\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define PARSE\_CL\_H}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{14 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <boost/program\_options.hpp>}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }cl = boost::program\_options;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{26 \textcolor{keyword}{struct }\mbox{\hyperlink{structSimulationParameters}{SimulationParameters}} \{   }
+\DoxyCodeLine{27     \textcolor{keywordtype}{double} \mbox{\hyperlink{structSimulationParameters_a9c91af7f1d5f1d27724d78b839ebb46e}{dt}};                  }
+\DoxyCodeLine{28     \textcolor{keywordtype}{double} Lx, Ly, \mbox{\hyperlink{structSimulationParameters_a4fe9ceb14d735015793116cded7fa693}{Lz}};          }
+\DoxyCodeLine{29     \textcolor{keywordtype}{double} \mbox{\hyperlink{structSimulationParameters_ac892d1c0fd2dad630da167c6bc04ccac}{T}};                   }
+\DoxyCodeLine{30     \textcolor{keywordtype}{double} \mbox{\hyperlink{structSimulationParameters_ad072b22d226a576e1157af7ec77de29a}{temp}};                }
+\DoxyCodeLine{31     \textcolor{keywordtype}{double} \mbox{\hyperlink{structSimulationParameters_a69786d46b659d038a74b369b81d1a615}{percent\_type1}};       }
+\DoxyCodeLine{32     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structSimulationParameters_a314a9e0497361427bdaa0d3294400204}{ic\_random}};             }
+\DoxyCodeLine{33     std::string \mbox{\hyperlink{structSimulationParameters_a42550291f764343806b02860900dcb7e}{ic}};             }
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} \mbox{\hyperlink{structSimulationParameters_a0c78c5a92ebd3975fea98148e3639f63}{N}};                      }
+\DoxyCodeLine{35 \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38 \mbox{\hyperlink{structSimulationParameters}{SimulationParameters}} \mbox{\hyperlink{parse__cl_8cpp_a43ed49d69bed45a0f4614ac96b6ee6b6}{parseCommandLine}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[]);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// PARSE\_CL\_H}}
+
+\end{DoxyCode}

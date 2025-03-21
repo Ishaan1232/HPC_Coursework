@@ -1,0 +1,80 @@
+\hypertarget{dynamics_8cpp}{}\doxysection{dynamics.\+cpp File Reference}
+\label{dynamics_8cpp}\index{dynamics.cpp@{dynamics.cpp}}
+
+
+This program initializes the simulation by parsing command-\/line arguments, setting up initial conditions, and running the simulation.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include \char`\"{}parse\+\_\+cl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}box.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}particle.\+h\char`\"{}}\newline
+Include dependency graph for dynamics.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dynamics_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{dynamics_8cpp_ab099be43c874be65964ee8a697cf35c8}{rand\+\_\+val}} (const double lower, const double upper)
+\begin{DoxyCompactList}\small\item\em Generates a random floating-\/point value within a given range. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dynamics_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to initiliase initial conditions and then run the simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This program initializes the simulation by parsing command-\/line arguments, setting up initial conditions, and running the simulation. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dynamics_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{dynamics_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{dynamics.cpp@{dynamics.cpp}!main@{main}}
+\index{main@{main}!dynamics.cpp@{dynamics.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to initiliase initial conditions and then run the simulation. 
+
+Parses command-\/line arguemnts to retrieve the parameters, uses the \mbox{\hyperlink{classParticle}{Particle}} class to create instances of the particles, then runs the simulation via the \mbox{\hyperlink{classBox}{Box}} class
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command-\/line arguments. \\
+\hline
+{\em argv} & The array of command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily 0} on successful execution, {\ttfamily 1} on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dynamics_8cpp_ab099be43c874be65964ee8a697cf35c8}\label{dynamics_8cpp_ab099be43c874be65964ee8a697cf35c8}} 
+\index{dynamics.cpp@{dynamics.cpp}!rand\_val@{rand\_val}}
+\index{rand\_val@{rand\_val}!dynamics.cpp@{dynamics.cpp}}
+\doxysubsubsection{\texorpdfstring{rand\_val()}{rand\_val()}}
+{\footnotesize\ttfamily double rand\+\_\+val (\begin{DoxyParamCaption}\item[{const double}]{lower,  }\item[{const double}]{upper }\end{DoxyParamCaption})}
+
+
+
+Generates a random floating-\/point value within a given range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower bound of the range. \\
+\hline
+{\em upper} & The upper bound of the range. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random double value between {\ttfamily lower} and {\ttfamily upper}. 
+\end{DoxyReturn}

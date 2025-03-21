@@ -1,0 +1,163 @@
+\hypertarget{classBox}{}\doxysection{Box Class Reference}
+\label{classBox}\index{Box@{Box}}
+
+
+Represents the simulation box.  
+
+
+
+
+{\ttfamily \#include $<$box.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBox_aca78d7db44972bfa78d46b7bbc8796f6}\label{classBox_aca78d7db44972bfa78d46b7bbc8796f6}} 
+{\bfseries Box} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBox_a0a620cf8ca299a17cb8e603d14d30ebe}{Box}} (const double x\+\_\+length, const double y\+\_\+length, const double z\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Construct the test box with the given dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBox_a120ab39d9d9bf0cec9601e1df7cfc040}\label{classBox_a120ab39d9d9bf0cec9601e1df7cfc040}} 
+{\bfseries $\sim$\+Box} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBox_a4c6fe21b45e78bc917969aa8a2b8ae55}{add\+Particle}} (\mbox{\hyperlink{classParticle}{Particle}} \&p)
+\begin{DoxyCompactList}\small\item\em Adds a particle to the box and ensures there is a minimum separation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBox_a5cbb62ecb12a06c4e30327643f255212}{calculate\+F\+\_\+i}} (\mbox{\hyperlink{classParticle}{Particle}} \&p\+\_\+i, int i)
+\begin{DoxyCompactList}\small\item\em Calculate the force on a particle exerted by all other particles. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classBox_a770b53ed2e86ece0c621f2a4ad687405}{system\+KE}} ()
+\begin{DoxyCompactList}\small\item\em Return the kinetic energy of the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBox_ada54d8d0d22eb6d8f9eefed5ced019fc}{run\+Simulation}} (double dt, double T, double temp, bool ic\+\_\+random, string ic)
+\begin{DoxyCompactList}\small\item\em Run the simulation once all particles are added successfully. \end{DoxyCompactList}\item 
+const vector$<$ \mbox{\hyperlink{classParticle}{Particle}} $>$ \& \mbox{\hyperlink{classBox_a4d759c1ae6e990a11e7406e44c6ec59a}{get\+\_\+particles}} () const
+\begin{DoxyCompactList}\small\item\em Getter for particles vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the simulation box. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBox_a0a620cf8ca299a17cb8e603d14d30ebe}\label{classBox_a0a620cf8ca299a17cb8e603d14d30ebe}} 
+\index{Box@{Box}!Box@{Box}}
+\index{Box@{Box}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{Box()}{Box()}}
+{\footnotesize\ttfamily Box\+::\+Box (\begin{DoxyParamCaption}\item[{const double}]{x\+\_\+length,  }\item[{const double}]{y\+\_\+length,  }\item[{const double}]{z\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Construct the test box with the given dimensions. 
+
+Initializes the box with given dimensions
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+length} & Length of the box in the x-\/direction. \\
+\hline
+{\em y\+\_\+length} & Length of the box in the y-\/direction. \\
+\hline
+{\em z\+\_\+length} & Length of the box in the z-\/direction. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBox_a4c6fe21b45e78bc917969aa8a2b8ae55}\label{classBox_a4c6fe21b45e78bc917969aa8a2b8ae55}} 
+\index{Box@{Box}!addParticle@{addParticle}}
+\index{addParticle@{addParticle}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{addParticle()}{addParticle()}}
+{\footnotesize\ttfamily bool Box\+::add\+Particle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParticle}{Particle}} \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Adds a particle to the box and ensures there is a minimum separation. 
+
+Adds the given particle to the box. Uses /f\$ R$^\wedge$2 = x\+\_\+\{ij\}$^\wedge$2 + y\+\_\+\{ij\}$^\wedge$2 + z\+\_\+\{ij\}$^\wedge$2 /f\$ where /f\$ a\+\_\+\{ij\} = a\+\_\+i -\/ a\+\_\+j /f\$. If /f\$ R$^\wedge$2 \texorpdfstring{$<$}{<} 0.\+25 /f\$, the particle is removed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The particle to be added to the box. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}true\textquotesingle{} if the particle was added sucessfully, \textquotesingle{}false\textquotesingle{} if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBox_a5cbb62ecb12a06c4e30327643f255212}\label{classBox_a5cbb62ecb12a06c4e30327643f255212}} 
+\index{Box@{Box}!calculateF\_i@{calculateF\_i}}
+\index{calculateF\_i@{calculateF\_i}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{calculateF\_i()}{calculateF\_i()}}
+{\footnotesize\ttfamily void Box\+::calculate\+F\+\_\+i (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classParticle}{Particle}} \&}]{p\+\_\+i,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Calculate the force on a particle exerted by all other particles. 
+
+Uses /f\$ \textbackslash{}mathbf\{F\}\+\_\+i = -\/ \textbackslash{}nabla \textbackslash{}sum\+\_\+\{\textbackslash{}substack\{j \textbackslash{}neq i\}\}$^\wedge$\{N\} \textbackslash{}phi\+\_\+\{ij\}./f\$ to calculate the force on particle i, where \textbackslash{}frac\{d \textbackslash{}phi\+\_\+\{ij\}\}\{dx\} = -\/24 \textbackslash{}epsilon x\+\_\+\{ij\} \textbackslash{}frac\{\textbackslash{}sigma$^\wedge$6\}\{r\+\_\+\{ij\}$^\wedge$8\} \textbackslash{}left( \textbackslash{}frac\{2\textbackslash{}sigma$^\wedge$6\}\{r\+\_\+\{ij\}$^\wedge$6\} -\/ 1 \textbackslash{}right). Using Newton\textquotesingle{}s Law, the force exerted on p\+\_\+i by p\+\_\+j is equal but opposite to the force exerted on p\+\_\+j by p\+\_\+i. Therefore, the total force is calculated on p\+\_\+i, but also the force exerted by p\+\_\+i on other particles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+i} & The particle to calculate the total force being exerted on \\
+\hline
+{\em i} & The position of the particle in the vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBox_a4d759c1ae6e990a11e7406e44c6ec59a}\label{classBox_a4d759c1ae6e990a11e7406e44c6ec59a}} 
+\index{Box@{Box}!get\_particles@{get\_particles}}
+\index{get\_particles@{get\_particles}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{get\_particles()}{get\_particles()}}
+{\footnotesize\ttfamily const vector$<$ \mbox{\hyperlink{classParticle}{Particle}} $>$ \& Box\+::get\+\_\+particles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for particles vector. 
+
+Used for unittests
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the particles vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBox_ada54d8d0d22eb6d8f9eefed5ced019fc}\label{classBox_ada54d8d0d22eb6d8f9eefed5ced019fc}} 
+\index{Box@{Box}!runSimulation@{runSimulation}}
+\index{runSimulation@{runSimulation}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{runSimulation()}{runSimulation()}}
+{\footnotesize\ttfamily void Box\+::run\+Simulation (\begin{DoxyParamCaption}\item[{double}]{dt,  }\item[{double}]{T,  }\item[{double}]{temp,  }\item[{bool}]{ic\+\_\+random,  }\item[{string}]{ic }\end{DoxyParamCaption})}
+
+
+
+Run the simulation once all particles are added successfully. 
+
+The simulation is run for T seconds where the particles are updated every timesetep. The kinetic energy is written to a text file every 0.\+1 seconds. The particle positions in the x-\/y plane are written to a text file for the test cases.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The timestep to update the particles \\
+\hline
+{\em T} & The total time to run the simulation \\
+\hline
+{\em temp} & The temperature to be fixed to, however, if equal to -\/1 not kept constant \\
+\hline
+{\em ic\+\_\+random} & \textquotesingle{}true\textquotesingle{} if the initial condition is ic\+\_\+random, \textquotesingle{}false\textquotesingle{} if not, used for writing to text files. \\
+\hline
+{\em ic} & The initial condition being run, used to name the text files appropriately as ic.\+txt. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBox_a770b53ed2e86ece0c621f2a4ad687405}\label{classBox_a770b53ed2e86ece0c621f2a4ad687405}} 
+\index{Box@{Box}!systemKE@{systemKE}}
+\index{systemKE@{systemKE}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{systemKE()}{systemKE()}}
+{\footnotesize\ttfamily double Box\+::system\+KE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the kinetic energy of the system. 
+
+Calculate the system\textquotesingle{}s kinetic energy bu summing the KE of individiual particles.
+
+\begin{DoxyReturn}{Returns}
+The kinetic energy of the system 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{box_8h}{box.\+h}}\item 
+\mbox{\hyperlink{box_8cpp}{box.\+cpp}}\item 
+box\+Par.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,11 @@
+<map id="box.h" name="box.h">
+<area shape="rect" id="node1" title="Defines the Box class." alt="" coords="279,5,338,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,68,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="397,80,460,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="92,155,165,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="294,155,369,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="485,80,543,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="393,155,449,181"/>
+<area shape="rect" id="node8" href="$particle_8h.html" title="Defines the SimulationParameters struct for the simulation&#39;s parameters." alt="" coords="189,80,271,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="190,155,270,181"/>
+</map>
